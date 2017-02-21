@@ -106,7 +106,7 @@ class RegisterView(generics.CreateAPIView):
 class ProfileListView(generics.ListAPIView):
     queryset = Person.objects.all()
     serializer_class = ProfileListSerializer
-    permission_classes=(IsAdminUser)
+    permission_classes=(IsAdminUser,)
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('__all__')
 
@@ -175,7 +175,7 @@ class AdListView(generics.ListCreateAPIView):
     filter_class = AdFilter
     pagination_class = CustomAdPagination
     ordering_fields = ('price', 'published')
-    ordering = ('published')
+    ordering = ('published',)
     search_fields = ('title', 'description', 'category__name', 'address__address',
                     'address__region', 'address__city')
 
@@ -203,7 +203,7 @@ class AdDetailView(generics.RetrieveUpdateDestroyAPIView):
 class AdImageListView(generics.ListAPIView):
     queryset = AdImage.objects.all()
     serializer_class = AdImageListSerializer
-    permission_classes = (IsAdminUser)
+    permission_classes = (IsAdminUser,)
 
 class AdImageCreateView(generics.CreateAPIView):
     queryset = AdImage.objects.all()
@@ -219,7 +219,7 @@ class FavoriteListView(generics.ListAPIView):
     queryset = Favourite.objects.all()
     serializer_class = FavouriteListSerializer
     permission_classes = (IsAdminUser,)
-    filter_fields = ('person')
+    filter_fields = ('person',)
 
 class FavoriteCreateView(generics.CreateAPIView):
     queryset = Favourite.objects.all()
@@ -254,7 +254,7 @@ class PropertyListView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     pagination_class= CustomAdPagination
     ordering_fields = ('ad__price', 'ad__published')
-    ordering = ('ad__published')
+    ordering = ('ad__published',)
     search_fields = ('ad__title', 'ad__description', 'ad__category__name', 'ad__address__address',
                     'ad__address__region', 'ad__address__city', 'kind', 'status', 'payment')
 
@@ -287,7 +287,7 @@ class VehicleListView(generics.ListCreateAPIView):
     filter_class = VehicleFilter
     pagination_class = CustomAdPagination
     ordering_fields = ('ad__price', 'ad__published')
-    ordering = ('ad__published')
+    ordering = ('ad__published',)
     search_fields = ('ad__title', 'ad__description','ad__category__name','ad__address__address',
                     'ad__address__region', 'ad__address__city', 'make', 'body', 'fuel', 'transmission')
 
