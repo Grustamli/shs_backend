@@ -6,11 +6,11 @@ from .models.categories import (MainCategory, SubCategory)
 # Register your models here.
 
 admin.site.register([
-                    Person,
-                    AdImage,
-                    Ad,
-                    Favourite,
-                    Property,
-                    MainCategory,
-                    SubCategory,
-                    ])
+    Person,
+    AdImage,
+    Ad,
+    Favourite,
+    Property,
+    MainCategory,
+    SubCategory,
+])
