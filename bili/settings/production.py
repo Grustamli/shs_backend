@@ -3,7 +3,7 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS=["*"]
+ALLOWED_HOSTS = get_env_variable("ALLOWED_HOSTS")
 
 DATABASES = {
     'default': {
