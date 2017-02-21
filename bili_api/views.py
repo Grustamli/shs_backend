@@ -118,13 +118,13 @@ class ProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = ProfileDetailSerializer
     lookup_field = 'username'
-    permission_classes = (IsOwnProfileOrReadOnly)
+    permission_classes = (IsOwnProfileOrReadOnly,)
 
 
 class PhoneNumberListView(generics.ListAPIView):
     queryset = PhoneNumber.objects.all()
     serializer_class = PhoneNumberListSerializer
-    permission_classes = (IsAdminUser)
+    permission_classes = (IsAdminUser,)
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('__all__')
 
@@ -141,13 +141,13 @@ class PhoneNumberCreateView(generics.CreateAPIView):
 class PhoneNumberDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = PhoneNumber.objects.all()
     serializer_class = PhoneNumberDetailSerializer
-    permission_classes = (IsOwnerOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly,)
 
 
 class AddressListView(generics.ListAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressListSerializer
-    permission_classes = (IsAdminUser)
+    permission_classes = (IsAdminUser,)
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('__all__')
 
@@ -164,7 +164,7 @@ class AddressCreateView(generics.CreateAPIView):
 class AddressDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressDetailSerializer
-    permission_classes = (IsOwnerOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly,)
 
 
 class AdListView(generics.ListCreateAPIView):
@@ -197,7 +197,7 @@ class AdDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Ad.objects.all()
     serializer_class = AdDetailSerializer
     lookup_field='slug'
-    permission_classes = (IsOwnerOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly,)
 
 
 class AdImageListView(generics.ListAPIView):
@@ -213,12 +213,12 @@ class AdImageCreateView(generics.CreateAPIView):
 class AdImageDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AdImage.objects.all()
     serializer_class = AdImageDetailSerializer
-    permission_classes = (IsAdOwnerOrReadOnly)
+    permission_classes = (IsAdOwnerOrReadOnly,)
 
 class FavoriteListView(generics.ListAPIView):
     queryset = Favourite.objects.all()
     serializer_class = FavouriteListSerializer
-    permission_classes = (IsAdminUser)
+    permission_classes = (IsAdminUser,)
     filter_fields = ('person')
 
 class FavoriteCreateView(generics.CreateAPIView):
@@ -233,7 +233,7 @@ class FavoriteCreateView(generics.CreateAPIView):
 class FavouriteDetailView(generics.RetrieveDestroyAPIView):
     queryset = Favourite.objects.all()
     serializer_class = FavouriteDetailSerializer
-    permission_classes = (IsOwner)
+    permission_classes = (IsOwner,)
 
 
 class CategoryListView(generics.ListAPIView):
@@ -251,7 +251,7 @@ class PropertyListView(generics.ListCreateAPIView):
     serializer_class = PropertyListSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
     filter_class = PropertyFilter
-    permission_classes = (IsAuthenticatedOrReadOnly)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     pagination_class= CustomAdPagination
     ordering_fields = ('ad__price', 'ad__published')
     ordering = ('ad__published')
@@ -273,7 +273,7 @@ class PropertyDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertyDetailSerializer
     lookup_field = 'id'
-    permission_classes = (IsAdOwnerOrReadOnly)
+    permission_classes = (IsAdOwnerOrReadOnly,)
     def get_serializer_class(self):
         if self.request.method == 'PUT':
             return PropertyUpdateSerializer
@@ -304,7 +304,7 @@ class VehicleDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Property.objects.all()
     serializer_class = VehicleDetailSerializer
     lookup_field = 'id'
-    permission_classes = (IsAdOwnerOrReadOnly)
+    permission_classes = (IsAdOwnerOrReadOnly,)
     def get_serializer_class(self):
         if self.request.method == 'PUT':
             return VehicleUpdateSerializer
