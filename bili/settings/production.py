@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS=["*"]
 
