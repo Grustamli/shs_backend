@@ -4,22 +4,21 @@ from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
 from .user import (
                 Person,
-                Address,
+                UserAddress,
                 )
-from .categories import SubCategory
+from .categories import Category
 import datetime
 
 class Ad(models.Model):
+    PLAN_CHOICES = ()
     person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='ads', editable=False)
-    category = models.ForeignKey(SubCategory, related_name='ads')
+    category = models.ForeignKey(Category, related_name='ads')
     title = models.CharField(max_length=250, blank=False)
     description = models.TextField()
     price = models.IntegerField(default=0)
     published = models.DateTimeField('publish date', auto_now_add=True)
-    active_from = models.DateField(blank=True, null=True)
     slug = models.SlugField(blank=True)
-    spotlight = models.NullBooleanField()
-    address = models.ForeignKey(Address, related_name='ads', null=True, blank=True)
+    plan = models.CharField(max_length=50, choices=PLAN_CHOICES, null=True)
     def __str__(self):
         return self.title
 
@@ -35,7 +34,6 @@ class AdImage(models.Model):
     def user_directory_path(instance, filename):
         ad_name = instance.ad.title
         return 'ads/{0}/{1}'.format(ad_name,filename)
-
 
     image = models.ImageField(upload_to=user_directory_path)
     def __str__(self):
@@ -55,3 +53,13 @@ class Message(models.Model):
     receiver = models.ForeignKey(Person, related_name='received_messages', on_delete=models.CASCADE)
     sent_time = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
+
+
+class AdAddress(models.Model):
+    person = models.OneToOneField(Ad, on_delete=models.CASCADE, related_name='address')
+    address = models.CharField(max_length=150)
+    region = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.address + ', ' + self.region + ', ' + self.city

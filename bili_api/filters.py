@@ -3,7 +3,7 @@ import django_filters
 
 
 from .models.ads import  Ad
-from .models.detailed_ads import (
+from .models.ad_extensions import (
                             Property,
                             Vehicle
                             )
@@ -29,7 +29,7 @@ class PropertyFilter(FilterSet):
     class Meta:
         model = Property
         fields = ['min_price', 'max_price','min_bed_room', 'max_bed_room','min_area',
-                    'max_price', 'kind', 'status', 'no_bed_room', 'payment',]
+                    'max_price', 'no_bed_room', 'payment',]
 
 class VehicleFilter(FilterSet):
     min_price = django_filters.NumberFilter(name='ad__price', lookup_expr='gte')

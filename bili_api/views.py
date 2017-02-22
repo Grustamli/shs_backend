@@ -20,8 +20,8 @@ from .serializers import (
                         ProfileDetailSerializer,
                         PhoneNumberListSerializer,
                         PhoneNumberDetailSerializer,
-                        AddressListSerializer,
-                        AddressDetailSerializer,
+                        UserAddressListSerializer,
+                        UserAddressDetailSerializer,
                         AdListSerializer,
                         AdDetailSerializer,
                         AdImageListSerializer,
@@ -42,7 +42,7 @@ from .serializers import (
 from .models.user import (
                         Person,
                         PhoneNumber,
-                        Address,
+                        UserAddress,
                         )
 
 from .models.ads import (
@@ -51,10 +51,10 @@ from .models.ads import (
                         Favourite
                         )
 
-from .models.categories import SubCategory
+from .models.categories import Category
 
 
-from .models.detailed_ads import (
+from .models.ad_extensions import (
                         Property,
                         Vehicle
                         )
@@ -145,16 +145,16 @@ class PhoneNumberDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class AddressListView(generics.ListAPIView):
-    queryset = Address.objects.all()
-    serializer_class = AddressListSerializer
+    queryset = UserAddress.objects.all()
+    serializer_class = UserAddressListSerializer
     permission_classes = (IsAdminUser,)
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('__all__')
 
 
 class AddressCreateView(generics.CreateAPIView):
-    queryset = Address.objects.all()
-    serializer_class = AddressListSerializer
+    queryset = UserAddress.objects.all()
+    serializer_class = UserAddressListSerializer
 
     def perform_create(self, serializer):
         serializer.save(person=self.request.user)
@@ -162,8 +162,8 @@ class AddressCreateView(generics.CreateAPIView):
 
 
 class AddressDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Address.objects.all()
-    serializer_class = AddressDetailSerializer
+    queryset = UserAddress.objects.all()
+    serializer_class = UserAddressDetailSerializer
     permission_classes = (IsOwnerOrReadOnly,)
 
 
@@ -237,11 +237,11 @@ class FavouriteDetailView(generics.RetrieveDestroyAPIView):
 
 
 class CategoryListView(generics.ListAPIView):
-    queryset = SubCategory.objects.all()
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 class CategoryDetailView(generics.RetrieveAPIView):
-    queryset = SubCategory.objects.all()
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field='name'
 

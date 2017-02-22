@@ -2,20 +2,18 @@ from rest_framework import serializers
 
 from .models.user import (
                         Person,
-                        Address,
+                        UserAddress,
                         PhoneNumber
                         )
 from .models.ads import (
                         Ad,
                         AdImage,
-                        Favourite
+                        Favourite,
+                        AdAddress
                         )
-from .models.categories import (
-                        MainCategory,
-                        SubCategory
-                        )
+from .models.categories import Category
 
-from .models.detailed_ads import (
+from .models.ad_extensions import (
                         Property,
                         Vehicle,
                         )
@@ -49,21 +47,21 @@ class PhoneNumberDetailSerializer(serializers.ModelSerializer):
 
 
 
-class AddressListSerializer(serializers.HyperlinkedModelSerializer):
+class UserAddressListSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='address-detail')
     person = serializers.HyperlinkedRelatedField(view_name='profile-detail',
             lookup_field='username',
             read_only=True)
     class Meta:
-        model = Address
+        model = UserAddress
         fields = ('url', 'person', 'address', 'region', 'city')
 
-class AddressDetailSerializer(serializers.HyperlinkedModelSerializer):
+class UserAddressDetailSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='address-detail')
     person = serializers.HyperlinkedRelatedField(view_name='profile-detail',
             lookup_field='username', read_only=True)
     class Meta:
-        model = Address
+        model = UserAddress
         fields = ('url', 'person', 'address', 'region', 'city')
 
 
@@ -142,7 +140,7 @@ class AdListSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='username',
             read_only=True)
     category = serializers.HyperlinkedRelatedField(view_name='category-detail',
-            queryset=SubCategory.objects.all(),
+            queryset=Category.objects.all(),
             lookup_field='name')
     # catalogue = serializers.HyperlinkedRelatedField(view_name='category-detail',
     #         queryset=SubCategory.objects.all())
@@ -162,9 +160,9 @@ class AdDetailSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='username',
             read_only=True)
     images = serializers.HyperlinkedRelatedField(view_name='adimage-detail', read_only=True, many=True)
-    address = serializers.HyperlinkedRelatedField(view_name='address-detail', queryset=Address.objects.all())
+    address = serializers.HyperlinkedRelatedField(view_name='address-detail', queryset=AdAddress.objects.all())
     category = serializers.HyperlinkedRelatedField(view_name='category-detail',
-            queryset=SubCategory.objects.all(),
+            queryset=Category.objects.all(),
             lookup_field='name')
     class Meta:
         model = Ad
@@ -225,11 +223,11 @@ class FavouriteDetailSerializer(serializers.HyperlinkedModelSerializer):
 # can implement later
 class CategorySerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='category-detail', lookup_field='name')
-    subcategories = serializers.StringRelatedField(many=True)
+    categories = serializers.StringRelatedField(many=True)
     main_category = serializers.StringRelatedField()
     class Meta:
-        model = SubCategory
-        fields = ('url','main_category','name','subcategories')
+        model = Category
+        fields = ('url','main_category','name','categories')
 
 
 class PropertyListSerializer(serializers.HyperlinkedModelSerializer):
@@ -237,7 +235,7 @@ class PropertyListSerializer(serializers.HyperlinkedModelSerializer):
     title = serializers.CharField(source='ad.title')
     description = serializers.CharField(source = 'ad.description')
     price = serializers.CharField(source='ad.price')
-    address = AddressListSerializer(source='ad.address')
+    address = UserAddressListSerializer(source='ad.address')
     spotlight = serializers.CharField(source='ad.spotlight')
     published = serializers.DateTimeField(source='ad.published')
     active_from = serializers.DateField(source='ad.active_from')
@@ -307,7 +305,7 @@ class PropertyDetailSerializer(serializers.HyperlinkedModelSerializer):
     title = serializers.CharField(source='ad.title')
     price = serializers.IntegerField(source='ad.price')
     description = serializers.CharField(source='ad.description')
-    address = AddressListSerializer(source='ad.address')
+    address = UserAddressListSerializer(source='ad.address')
     spotlight = serializers.CharField(source='ad.spotlight')
     active_from = serializers.DateField(source='ad.active_from')
     category = serializers.CharField(source='ad.category')
@@ -324,7 +322,7 @@ class VehicleListSerializer(serializers.HyperlinkedModelSerializer):
     title = serializers.CharField(source='ad.title')
     description = serializers.CharField(source = 'ad.description')
     price = serializers.CharField(source='ad.price')
-    address = AddressListSerializer(source='ad.address')
+    address = UserAddressListSerializer(source='ad.address')
     spotlight = serializers.CharField(source='ad.spotlight')
     published = serializers.DateTimeField(source='ad.published')
     active_from = serializers.DateField(source='ad.active_from')
@@ -394,7 +392,7 @@ class VehicleDetailSerializer(serializers.HyperlinkedModelSerializer):
     title = serializers.CharField(source='ad.title')
     price = serializers.IntegerField(source='ad.price')
     description = serializers.CharField(source='ad.description')
-    address = AddressListSerializer(source='ad.address')
+    address = UserAddressListSerializer(source='ad.address')
     spotlight = serializers.CharField(source='ad.spotlight')
     active_from = serializers.DateField(source='ad.active_from')
     category = serializers.CharField(source='ad.category')
