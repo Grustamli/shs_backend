@@ -3,7 +3,7 @@ from rest_framework_swagger.views import get_swagger_view
 from rest_framework import routers
 
 from .views.ads import AdListView
-from .views.api_root import api_root
+from .views.api_schema import (api_root, vehicle_props_schema)
 from .views.categories import CategoryListView
 from .views.vehicle_data import VehiclePropListView
 
@@ -12,10 +12,11 @@ from .views.vehicle_data import VehiclePropListView
 # router = routers.SimpleRouter()
 
 urlpatterns = [
- url(r'^root/$', api_root),
+ url(r'^$', api_root),
+ url(r'^vehicle-props/$', vehicle_props_schema, name='vehicle_props'),
  url(r'^ads/$', AdListView.as_view(), name='ad_list'),
  url(r'^categories/', CategoryListView.as_view(), name='category_list'),
- url(r'^vehicle-props/(?P<feature>[\w-]+)/$', VehiclePropListView.as_view(), name="vehicle_props")
+ url(r'^vehicle-props/(?P<feature>[\w-]+)/$', VehiclePropListView.as_view(), name="vehicle_prop")
 ]
 
 

@@ -7,8 +7,10 @@ class CategoryListView(ListAPIView):
     serializer_class = CategoryListSerializer
     def get_queryset(self):
         queryset = Category.objects.all()
-        current = self.request.query_params.get('current', None)
-        if current is not None:
-            current_obj = queryset.get(pk=current)
-            queryset = current_obj.subcategories
+        parent = self.request.query_params.get('parent', None)
+        if parent is not None:
+            if parent == 'null':
+                queryset = queryset.filter(parent=None)
+            else:
+                queryset = queryset.filter(parent=parent)
         return queryset
