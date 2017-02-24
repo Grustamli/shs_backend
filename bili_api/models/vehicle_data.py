@@ -1,6 +1,6 @@
 from django.db import models
 
-class CarMake(models.Model):
+class VehicleMake(models.Model):
     name = models.CharField(max_length=50, unique=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
@@ -9,7 +9,7 @@ class CarMake(models.Model):
     def __str__(self):
         return self.name
 
-class CarModel(models.Model):
+class VehicleModel(models.Model):
     name = models.CharField(max_length=50, unique=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
@@ -18,7 +18,7 @@ class CarModel(models.Model):
     def __str__(self):
         return self.name
 
-class CarBody(models.Model):
+class VehicleBody(models.Model):
     name = models.CharField(max_length=50, unique=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
@@ -27,7 +27,7 @@ class CarBody(models.Model):
     def __str__(self):
         return self.name
 
-class CarTransmission(models.Model):
+class VehicleTransmission(models.Model):
     name = models.CharField(max_length=50, unique=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
@@ -36,7 +36,7 @@ class CarTransmission(models.Model):
     def __str__(self):
         return self.name
 
-class CarFuel(models.Model):
+class VehicleFuel(models.Model):
     name = models.CharField(max_length=50, unique=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)

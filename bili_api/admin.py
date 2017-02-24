@@ -5,6 +5,7 @@ from .models.ad_extensions import Property
 from .models.categories import Category
 # Register your models here.
 
+
 admin.site.register([
     Person,
     AdImage,

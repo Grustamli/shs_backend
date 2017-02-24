@@ -4,7 +4,7 @@ from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
 from django.core.validators import MaxValueValidator
 from .ads import Ad
-from .car_data import (CarBody, CarFuel, CarMake, CarTransmission)
+from .vehicle_data import (VehicleBody, VehicleFuel, VehicleMake, VehicleTransmission)
 from .property_data import PaymentPeriod
 import datetime
 
@@ -25,10 +25,10 @@ class Vehicle(Ad):
         YEAR_CHOICES.append((r,r))
 
     ad = models.OneToOneField(Ad, related_name='vehicle')
-    make = models.ForeignKey(CarMake, null=True)
-    body = models.ForeignKey(CarBody, null=True)
-    fuel = models.ForeignKey(CarFuel, null=True)
-    transmission = models.ForeignKey(CarTransmission, null=True)
+    make = models.ForeignKey(VehicleMake, null=True)
+    body = models.ForeignKey(VehicleBody, null=True)
+    fuel = models.ForeignKey(VehicleFuel, null=True)
+    transmission = models.ForeignKey(VehicleTransmission, null=True)
     mileage = models.IntegerField(validators=[MaxValueValidator(9999999999)], null=True, blank=True)
     year = models.IntegerField(choices=YEAR_CHOICES, default=datetime.datetime.now().year, null=True, blank=True)
     engine_size = models.DecimalField(max_digits=10, decimal_places=3, blank=True, null=True)
