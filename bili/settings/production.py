@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .base import *
 
-DEBUG = get_env_variable("DEBUG")
+DEBUG = False
 
 ALLOWED_HOSTS = get_env_variable("ALLOWED_HOSTS")
 

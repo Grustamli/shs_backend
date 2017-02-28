@@ -14,3 +14,4 @@ class CategoryListView(ListAPIView):
             else:
                 queryset = queryset.filter(parent=parent)
         return queryset
+        

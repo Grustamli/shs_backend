@@ -30,11 +30,10 @@ def get_env_variable(var_name):
 
 SECRET_KEY= get_env_variable("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = []
 
-print(BASE_DIR)
 
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
@@ -154,12 +153,15 @@ STATICFILES_DIRS = (
 # }
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ),
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
-}
+# REST_FRAMEWORK = {
+#     # 'DEFAULT_PERMISSION_CLASSES': (
+#     #     'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+#     # ),
+#     # 'DEFAULT_PARSER_CLASSES': (
+#     #     'rest_framework.parsers.JSONParser',
+#     # ),
+#     # 'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+# }
 
 
 CORS_ORIGIN_ALLOW_ALL = True

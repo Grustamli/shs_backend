@@ -1,11 +1,13 @@
 from django.conf.urls import(url, include)
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework import routers
-
-from .views.ads import AdListView
-from .views.api_schema import (api_root, vehicle_props_schema)
+from .views.ads import (AdListView, AdDetailView)
+from .views.api_schema import (api_root, vehicle_props_schema, favorites_schema, ad_images)
 from .views.categories import CategoryListView
 from .views.vehicle_data import VehiclePropListView
+from .views.user_favorites import (UserFavoriteListView, UserFavoriteDetailView)
+from .views.add_on import AddOnListView
+from .views.ad_image import (AdImageListApiView, AdImageDetailApiView)
 
 # from .vi
 
@@ -14,9 +16,17 @@ from .views.vehicle_data import VehiclePropListView
 urlpatterns = [
  url(r'^$', api_root),
  url(r'^vehicle-props/$', vehicle_props_schema, name='vehicle_props'),
+ url(r'^favorites/$', favorites_schema, name='favorites'),
  url(r'^ads/$', AdListView.as_view(), name='ad_list'),
+ url(r'^ads/(?P<pk>[\w-]+)/$', AdDetailView.as_view(), name='ad_detail'),
  url(r'^categories/', CategoryListView.as_view(), name='category_list'),
- url(r'^vehicle-props/(?P<feature>[\w-]+)/$', VehiclePropListView.as_view(), name="vehicle_prop")
+ url(r'^vehicle-props/(?P<feature>[\w-]+)/$', VehiclePropListView.as_view(), name="vehicle_prop"),
+ url(r'^favorites/user-(?P<user_id>[0-9]+)/$', UserFavoriteListView.as_view(), name= "user_favorites"),
+ url(r'^favorites/user-(?P<user_id>[0-9]+)/(?P<pk>[0-9]+)/$', UserFavoriteDetailView.as_view(), name= "favorites_detail"),
+ url(r'^ad-images/$', ad_images, name='ad_images'),
+ url(r'^ad-images/ad-(?P<ad_id>[0-9]+)/$', AdImageListApiView.as_view(), name='ad_image_list'),
+ url(r'^ad-images/ad-(?P<ad_id>[0-9]+)/(?P<pk>[0-9]+)/$', AdImageDetailApiView.as_view(), name='ad_image_detail'),
+ url(r'^add-ons/$', AddOnListView.as_view(), name = "add-ons")
 ]
 
 
@@ -87,8 +97,8 @@ urlpatterns = [
 #
 #
 # # Schema view of bili_api
-# schema_view = get_swagger_view(title='Bili API')
-# urlpatterns += [url(r'^$', schema_view)]
+schema_view = get_swagger_view(title='Bili API', url='/')
+urlpatterns += [url(r'^swagger$', schema_view)]
 #
 #
 # # detailed ads urls

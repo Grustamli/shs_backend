@@ -10,27 +10,25 @@ from .categories import Category
 import datetime
 
 class Ad(models.Model):
-    PLAN_CHOICES = ()
-    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='ads', editable=False)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='ads')
     category = models.ForeignKey(Category, related_name='ads')
     title = models.CharField(max_length=250, blank=False)
     description = models.TextField()
     price = models.IntegerField(default=0)
     published = models.DateTimeField('publish date', auto_now_add=True)
+    active_from = models.DateField(null=True)
     slug = models.SlugField(blank=True)
-    plan = models.CharField(max_length=50, choices=PLAN_CHOICES, null=True)
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-        super(Ad, self).save(*args, **kwargs)
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 
 class AdImage(models.Model):
-    ad = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images', editable=False)
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images')
     def user_directory_path(instance, filename):
         ad_name = instance.ad.title
         return 'ads/{0}/{1}'.format(ad_name,filename)

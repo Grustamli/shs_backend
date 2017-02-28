@@ -2,6 +2,8 @@
 # you cannot run it directly
 
 deactivate () {
+    unset SECRET_KEY
+    unset DJANGO_SETTINGS_MODULE
     unset -f pydoc >/dev/null 2>&1
 
     # reset old environment variables
@@ -76,3 +78,10 @@ pydoc () {
 if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ] ; then
     hash -r 2>/dev/null
 fi
+
+export SECRET_KEY="6$8p%d5xvnt8!=sp^#*2&5u-^i1o=t**%h(#rn(q!*7+7s*23m"
+
+export DATABASE_NAME='bili_db'
+export DATABASE_USER='grustamli'
+export DATABASE_PASSWORD='Az2104025'
+export DJANGO_SETTINGS_MODULE="bili.settings.development"

@@ -2,5 +2,3 @@
 from .base import *
 
 DEBUG = True
-
-print(SECRET_KEY)
