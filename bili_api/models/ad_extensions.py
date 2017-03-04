@@ -7,6 +7,7 @@ from .ads import Ad
 from .vehicle_data import (VehicleBody, VehicleFuel, VehicleMake, VehicleTransmission)
 from .property_data import PaymentPeriod
 import datetime
+import base64
 
 # Creating models for categories
 class Property(Ad):

@@ -1,7 +1,7 @@
 from rest_framework.decorators import (api_view, permission_classes)
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from ..models.user import Person
+from django.contrib.auth.models import User
 from ..models.ads import Ad
 
 @api_view(['GET'])
@@ -11,8 +11,10 @@ def api_root(request, format=None):
         'Categories': reverse('category_list', request=request, format=format),
         'Vehicle Props': reverse('vehicle_props', request=request, format=format),
         'Favorites': reverse('favorites', request=request, format=format),
-        'Add Ons': reverse('add-ons', request=request, format=format),
-        'Ad Images': reverse('ad_images', request=request, format=format)
+        'Add Ons': reverse('add_ons', request=request, format=format),
+        'Ad Images': reverse('ad_images', request=request, format=format),
+        'Register': reverse('register', request=request, format=format),
+        'Search Alerts': reverse('search_alerts', request=request, format=format)
     })
 
 @api_view(['GET'])
@@ -28,11 +30,11 @@ def vehicle_props_schema(request, format=None):
 
 @api_view(['GET'])
 def favorites_schema(request, format=None):
-    users = Person.objects.all()
+    users = User.objects.all()
     urls = {}
     for user in users:
-        user_id = user.id
-        urls[user_id] = reverse('user_favorites', kwargs={'user_id': user_id}, request=request, format=format)
+        username = user.username
+        urls[username] = reverse('user_favorites', kwargs={'username': username}, request=request, format=format)
     return Response(urls)
 
 @api_view(['GET'])
@@ -40,6 +42,16 @@ def ad_images(request, format=None):
     ads = Ad.objects.all()
     urls = {}
     for ad in ads:
-        ad_id = ad.id
-        urls[ad_id] = reverse('ad_image_list', kwargs={'ad_id': ad_id}, request=request, format=format)
+        ad_id = ad.uuid
+        urls[ad_id] = reverse('ad_image_list', kwargs={'ad_uuid': ad_id}, request=request, format=format)
+    return Response(urls)
+
+
+@api_view(['GET'])
+def search_alert_schema(request, format=None):
+    users = User.objects.all()
+    urls = {}
+    for user in users:
+        username = user.username
+        urls[username] = reverse('user_search_alerts', kwargs={'username': username}, request=request, format=format)
     return Response(urls)
