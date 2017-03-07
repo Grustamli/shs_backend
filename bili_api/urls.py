@@ -10,6 +10,7 @@ from .views.add_on import AddOnListView
 from .views.ad_image import (AdImageListApiView, AdImageDetailApiView)
 from .views.register import RegisterListView
 from .views.search_alert import *
+from .views.verify_username import VerifyUsername
 
 
 urlpatterns = [
@@ -29,7 +30,8 @@ urlpatterns = [
  url(r'^add-ons/$', AddOnListView.as_view(), name = "add_ons"),
  url(r'^search-alerts/$', search_alert_schema, name='search_alerts'),
  url(r'^search-alerts/(?P<username>[\w-]+)/$', SearchAlertListView.as_view(), name="user_search_alerts"),
- url(r'^search-alerts/(?P<username>[\w-]+)/(?P<pk>[0-9]+)/$', SearchAlertDetailView.as_view(), name="user_search_alerts_detail")
+ url(r'^search-alerts/(?P<username>[\w-]+)/(?P<pk>[0-9]+)/$', SearchAlertDetailView.as_view(), name="user_search_alerts_detail"),
+ url(r'^verify-username', VerifyUsername.as_view(), name='verify_username')
 ]
 
 
