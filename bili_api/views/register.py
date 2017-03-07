@@ -15,7 +15,7 @@ class RegisterListView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            email = serializer.data['email']
+            email = serializer.validated_data['email']
             if User.objects.filter(email=email).exists():
                 response = {
                     'email': [
