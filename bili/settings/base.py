@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'django_filters',
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -173,6 +173,7 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': timedelta(hours=1),
     'JWT_ALLOW_REFRESH': True,
+    'JWT_SECRET_KEY': get_env_variable("SECRET_KEY")
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
