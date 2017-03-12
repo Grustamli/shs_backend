@@ -1,0 +1,41 @@
+- model: bili_api.vehiclebody
+  pk: hatchback
+  fields:
+    en: hatchback
+    az: Hechbek
+
+- model: bili_api.vehiclebody
+  pk: saloon
+  fields:
+    en: Saloon
+    az: Salon
+
+- model: bili_api.vehiclebody
+  pk: estate
+  fields:
+    en: Estate
+    az: Esteyt
+
+- model: bili_api.vehiclebody
+  pk: four_door_coupe
+  fields:
+    en: Four door coupes
+    az: 4 qapili kupe
+
+- model: bili_api.vehiclebody
+  pk: crossover
+  fields:
+    en: Crossovers
+    az: Krossover
+
+- model: bili_api.vehiclebody
+  pk: suv
+  fields:
+    en: SUV
+    az: SUV
+
+- model: bili_api.vehiclebody
+  pk: coupe
+  fields:
+    en: Coupe
+    az: Kupe

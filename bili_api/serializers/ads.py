@@ -7,6 +7,17 @@ class AdListSerializer(serializers.ModelSerializer):
     owner = serializers.CharField(source='owner.username', read_only=True)
     vehicle = VehicleOnlyFieldsSerializer()
     property = PropertyOnlyFieldsSerializer()
+    def __init__(self, *args, **kwargs):
+        # Instantiate the superclass normally
+        super().__init__(*args, **kwargs)
+        brief = self.context['request'].query_params.get('brief')
+        if brief is not None and brief == 'true':
+            # Drop any fields that are not specified in the `fields` argument.
+            allowed = set(['uuid',])
+            existing = set(self.fields.keys())
+            for field_name in existing - allowed:
+                self.fields.pop(field_name)
+
     class Meta:
         model = Ad
         fields = ('uuid', 'owner', 'title', 'price', 'description', 'add_on_name', 'vehicle', 'property')

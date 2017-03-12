@@ -1,0 +1,11 @@
+- model: bili_api.vehicletransmission
+  pk: manual
+  fields:
+    en: Manual
+    az: Manual
+
+- model: bili_api.vehicletransmission
+  pk: automatic
+  fields:
+    en: Automatic
+    az: Avtomatika

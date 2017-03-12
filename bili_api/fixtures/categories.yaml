@@ -1,0 +1,35 @@
+- model: bili_api.category
+  pk: property
+  fields:
+    en: Property
+    az: Emlak
+    tr: Emlak
+
+- model: bili_api.category
+  pk: vehicle
+  fields:
+    en: Vehicle
+    az: Neqliyyat
+    tr: Oto
+
+- model: bili_api.category
+  pk: pet
+  fields:
+    en: Pets
+    az: Heyvanlar
+    tr: Hayvanlar
+
+- model: bili_api.category
+  pk: service
+  fields:
+    en: Services
+    az: Xidmetler
+    tr: Hizmetler
+
+- model: bili_api.category
+  pk: home
+  fields:
+    parent: property
+    en: Home
+    az: Ev
+    tr: Ev

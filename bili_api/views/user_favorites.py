@@ -9,12 +9,7 @@ from ..serializers.user_favorites import UserFavoriteListSerializer
 
 class UserFavoriteListView(ListCreateAPIView):
     serializer_class = UserFavoriteListSerializer
-
-    def get_queryset(self):
-        queryset = Favourite.objects.all()
-        username = self.kwargs.get('username', None)
-        queryset = queryset.filter(owner__username=username)
-        return queryset
+    queryset = Favourite.objects.all()
 
     def list(self, request, username):
         queryset = self.get_queryset().filter(owner__username=username)

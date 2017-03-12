@@ -1,0 +1,35 @@
+- model: bili_api.vehiclefuel
+  pk: diesel
+  fields:
+    en: Diesel
+    az: Dizel
+
+- model: bili_api.vehiclefuel
+  pk: petrol
+  fields:
+    en: Petrol
+    az: Benzin
+
+- model: bili_api.vehiclefuel
+  pk: lpg
+  fields:
+    en: LPG
+    az: Maye qaz
+
+- model: bili_api.vehiclefuel
+  pk: biofuel
+  fields:
+    en: Biofuel
+    az: Bioyanacaq
+
+- model: bili_api.vehiclefuel
+  pk: hybrid
+  fields:
+    en: Hybrid
+    az: Hibrid
+
+- model: bili_api.vehiclefuel
+  pk: electric
+  fields:
+    en: Electric
+    az: Elektrik

@@ -1,0 +1,24 @@
+- model: bili_api.vehiclemake
+  pk: renault
+  fields:
+    en: Renault
+
+- model: bili_api.vehiclemake
+  pk: toyota
+  fields:
+    en: Toyota
+
+- model: bili_api.vehiclemake
+  pk: opel
+  fields:
+    en: Opel
+
+- model: bili_api.vehiclemake
+  pk: mitsubishi
+  fields:
+    en: Mistsubishi
+
+- model: bili_api.vehiclemake
+  pk: bmw
+  fields:
+    en: BMW

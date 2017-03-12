@@ -12,6 +12,7 @@ from .views.register import RegisterListView
 from .views.search_alert import *
 from .views.verify_username import VerifyUsername
 from .views.ad_extensions import *
+from .views.user_posts import UserPostsListView
 
 urlpatterns = [
  url(r'^$', api_root),
@@ -33,7 +34,8 @@ urlpatterns = [
  url(r'^search-alerts/(?P<username>[\w-]+)/(?P<pk>[0-9]+)/$', SearchAlertDetailView.as_view(), name="user_search_alerts_detail"),
  url(r'^verify-username', VerifyUsername.as_view(), name='verify_username'),
  url(r'^vehicle-ads/', VehicleAdListCreateView.as_view(), name='vehicle_ads'),
- url(r'^property-ads/', PropertyAdListCreateView.as_view(), name='property_ads')
+ url(r'^property-ads/', PropertyAdListCreateView.as_view(), name='property_ads'),
+ url(r'^user-posts/(?P<username>[\w-]+)/$', UserPostsListView.as_view(), name='user-posts'),
 ]
 
 
