@@ -24,8 +24,6 @@ class Vehicle(Ad):
     YEAR_CHOICES = []
     for r in range(1960, (datetime.datetime.now().year+1)):
         YEAR_CHOICES.append((r,r))
-
-    ad = models.OneToOneField(Ad, related_name='vehicle')
     make = models.ForeignKey(VehicleMake, null=True)
     body = models.ForeignKey(VehicleBody, null=True)
     fuel = models.ForeignKey(VehicleFuel, null=True)

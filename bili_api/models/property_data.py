@@ -1,7 +1,7 @@
 from django.db import models
 
 class PaymentPeriod(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True, primary_key=True)
     az = models.CharField(max_length=50, null=True, blank=True)
     en = models.CharField(max_length=50, null=True, blank=True)
     ru = models.CharField(max_length=50, null=True, blank=True)

@@ -1,7 +1,7 @@
 from django.db import models
 
 class VehicleMake(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, primary_key=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
     ru = models.CharField(max_length=50, null = True, blank = True)
@@ -10,7 +10,7 @@ class VehicleMake(models.Model):
         return self.name
 
 class VehicleModel(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, primary_key=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
     ru = models.CharField(max_length=50, null = True, blank = True)
@@ -19,7 +19,7 @@ class VehicleModel(models.Model):
         return self.name
 
 class VehicleBody(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, primary_key=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
     ru = models.CharField(max_length=50, null = True, blank = True)
@@ -28,7 +28,7 @@ class VehicleBody(models.Model):
         return self.name
 
 class VehicleTransmission(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, primary_key=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
     ru = models.CharField(max_length=50, null = True, blank = True)
@@ -37,7 +37,7 @@ class VehicleTransmission(models.Model):
         return self.name
 
 class VehicleFuel(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, primary_key=True)
     az = models.CharField(max_length=50, null = True, blank = True)
     en = models.CharField(max_length=50, null = True, blank = True)
     ru = models.CharField(max_length=50, null = True, blank = True)
