@@ -5,6 +5,7 @@ from .models.ad_extensions import Property
 from .models.categories import Category
 from .models.add_on import AddOnType
 from .models.property_data import PaymentPeriod
+from .models.vehicle_data import *
 # Register your models here.
 
 
@@ -15,5 +16,10 @@ admin.site.register([
     Property,
     Category,
     AddOnType,
-    PaymentPeriod
+    PaymentPeriod,
+    VehicleMake,
+    VehicleModel,
+    VehicleBody,
+    VehicleTransmission,
+    VehicleFuel,
 ])

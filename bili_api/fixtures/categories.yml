@@ -1,0 +1,4 @@
+- model: bili_api.vehicle_make
+  pk: renault
+  fields:
+    en: Renault
