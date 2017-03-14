@@ -21,11 +21,7 @@ class AdListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
         fields = ('uuid', 'owner', 'title', 'price', 'description', 'add_on_name', 'vehicle', 'property')
-        # extra_kwargs = {
-        #     'owner':{
-        #         'read_only': True,
-        #     }
-        # }
+
 
 class AdCreateSerializer(serializers.ModelSerializer):
     class Meta:
