@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'django_filters',
     'crispy_forms',
+    'django_extensions'
 ]
 
 MIDDLEWARE_CLASSES = [

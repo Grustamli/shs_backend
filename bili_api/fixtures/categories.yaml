@@ -1,14 +1,14 @@
 
 ############################### Main Category Items ############################
 - model: bili_api.category
-  pk: property
+  pk: prop
   fields:
     en: Property
     az: Emlak
     tr: Emlak
 
 - model: bili_api.category
-  pk: motor
+  pk: mtr
   fields:
     en: motor
     az: Neqliyyat
@@ -22,7 +22,7 @@
     tr: Hayvanlar
 
 - model: bili_api.category
-  pk: service
+  pk: srvc
   fields:
     en: Services
     az: Xidmetler
@@ -30,7 +30,7 @@
 
 
 - model: bili_api.category
-  pk: community
+  pk: cmty
   fields:
     en: Community
     az: Ictimai
@@ -44,7 +44,7 @@
     tr: Isler
 
 - model: bili_api.category
-  pk: for_sale
+  pk: good
   fields:
     en: For Sale
     az: Al sat
@@ -53,433 +53,433 @@
 ###################### Motor Subcategories: 1st level ##########################
 
 - model: bili_api.category
-  pk: motor__car
+  pk: mtr__car
   fields:
-    parent: motor
+    parent: mtr
     en: Cars
     az: Avtomobiller
     tr: Otomobil
 
 - model: bili_api.category
-  pk: motor__motorbike
+  pk: mtr__motorbike
   fields:
-    parent: motor
+    parent: mtr
     en: Motorbikes & Scooters
 
 - model: bili_api.category
-  pk: motor__van
+  pk: mtr__van
   fields:
-    parent: motor
+    parent: mtr
     en: Vans
 
 - model: bili_api.category
-  pk: motor__caravan
+  pk: mtr__caravan
   fields:
-    parent: motor
+    parent: mtr
     en: Caravans
 
 - model: bili_api.category
-  pk: motor__campervan
+  pk: mtr__campervan
   fields:
-    parent: motor
+    parent: mtr
     en: Campervans & Motorhomes
 
 - model: bili_api.category
-  pk: motor__truck
+  pk: mtr__truck
   fields:
-    parent: motor
+    parent: mtr
     en: Trucks
 
 - model: bili_api.category
-  pk: motor__heavy
+  pk: mtr__heavy
   fields:
-    parent: motor
+    parent: mtr
     en: Heavy Machinery
 
 - model: bili_api.category
-  pk: motor__other
+  pk: mtr__other
   fields:
-    parent: motor
+    parent: mtr
     en: Other Vehicles
 
 - model: bili_api.category
-  pk: motor__accessory
+  pk: mtr__acc
   fields:
-    parent: motor
+    parent: mtr
     en: Accessories
 
 - model: bili_api.category
-  pk: motor__part
+  pk: mtr__part
   fields:
-    parent: motor
+    parent: mtr
     en: Parts
 
 - model: bili_api.category
-  pk: motor__wanted
+  pk: mtr__wanted
   fields:
-    parent: motor
+    parent: mtr
     en: Wanted
 
 ############################## Motor > Accessory ###############################
 
 - model: bili_api.category
-  pk: motor__acc__tuning
+  pk: mtr__acc__tuning
   fields:
-    parent: motor__accessory
+    parent: mtr__acc
     en: Car Tuning & Styling
 
 - model: bili_api.category
-  pk: motor__acc__clothing
+  pk: mtr__acc__clothing
   fields:
-    parent: motor__accessory
+    parent: mtr__acc
     en: Clothing
 
 - model: bili_api.category
-  pk: motor__acc__audio
+  pk: mtr__acc__audio
   fields:
-    parent: motor__accessory
+    parent: mtr__acc
     en: In car Audio
 
 - model: bili_api.category
-  pk: motor__acc__gps
+  pk: mtr__acc__gps
   fields:
-    parent: motor__accessory
+    parent: mtr__acc
     en: GPS
 
 - model: bili_api.category
-  pk: motor__acc__motorbike_tuning
+  pk: mtr__acc__motorbike_tuning
   fields:
-    parent: motor__accessory
+    parent: mtr__acc
     en: Motorbike Accessories & Tuning
 
 - model: bili_api.category
-  pk: motor__acc__other
+  pk: mtr__acc__other
   fields:
-    parent: motor__accessory
+    parent: mtr__acc
     en: Other Accessories
 
 - model: bili_api.category
-  pk: motor__acc__wheel
+  pk: mtr__acc__wheel
   fields:
-    parent: motor__accessory
+    parent: mtr__acc
     en: Wheel Rims & Tyres
 
 ################################## Motor > Parts ###############################
 
 - model: bili_api.category
-  pk: motor__parts__car
+  pk: mtr__part__car
   fields:
-    parent: motor__part
+    parent: mtr__part
     en: Car Parts
 
 - model: bili_api.category
-  pk: motor__parts__motorbike
+  pk: mtr__part__motorbike
   fields:
-    parent: motor__part
+    parent: mtr__part
     en: Motorbike & Scooters Parts
 
 - model: bili_api.category
-  pk: motor__parts__van
+  pk: mtr__part__van
   fields:
-    parent: motor__part
+    parent: mtr__part
     en: Van Parts
 
 - model: bili_api.category
-  pk: motor__parts__campervan
+  pk: mtr__part__campervan
   fields:
-    parent: motor__part
+    parent: mtr__part
     en: Campervan Parts
 
 - model: bili_api.category
-  pk: motor__parts__truck
+  pk: mtr__part__truck
   fields:
-    parent: motor__part
+    parent: mtr__part
     en: Trucks Parts
 
 - model: bili_api.category
-  pk: motor__parts__heavy
+  pk: mtr__part__heavy
   fields:
-    parent: motor__part
+    parent: mtr__part
     en: Heavy Machinery Parts
 
 ###################### Property Subcategories: 1st Level #######################
 
 - model: bili_api.category
-  pk: property__land
+  pk: prop__land
   fields:
-    parent: property
+    parent: prop
     en: Lands & Farms
 
 - model: bili_api.category
-  pk: property__rent
+  pk: prop__rent
   fields:
-    parent: property
+    parent: prop
     en: To Rent
 
 - model: bili_api.category
-  pk: property__share
+  pk: prop__share
   fields:
-    parent: property
+    parent: prop
     en: To Share
 
 - model: bili_api.category
-  pk: property__sale
+  pk: prop__sale
   fields:
-    parent: property
+    parent: prop
     en: For Sale
 
 ################################# Property > Land ##############################
 
 - model: bili_api.category
-  pk: property__land__country_house
+  pk: prop__land__country_house
   fields:
-    parent: property__land
+    parent: prop__land
     en: Country Houses
 
 - model: bili_api.category
-  pk: property__land__equestrian
+  pk: prop__land__equestrian
   fields:
-    parent: property__land
+    parent: prop__land
     en: Equestrian
 
 - model: bili_api.category
-  pk: property__land__farm
+  pk: prop__land__farm
   fields:
-    parent: property__land
+    parent: prop__land
     en: Farms
 
 - model: bili_api.category
-  pk: property__land__land
+  pk: prop__land__land
   fields:
-    parent: property__land
+    parent: prop__land
     en: Lands
 
 - model: bili_api.category
-  pk: property__land__rural_business
+  pk: prop__land__rural_business
   fields:
-    parent: property__land
+    parent: prop__land
     en: Rural Business
 
 - model: bili_api.category
-  pk: property__land__woodland
+  pk: prop__land__woodland
   fields:
-    parent: property__land
+    parent: prop__land
     en: Woodland
 
 ################################## Property > Rent #############################
 
 - model: bili_api.category
-  pk: property__rent__offered
+  pk: prop__rent__offered
   fields:
-    parent: property__rent
+    parent: prop__rent
     en: Offered
 
 - model: bili_api.category
-  pk: property__rent__wanted
+  pk: prop__rent__wanted
   fields:
-    parent: property__rent
+    parent: prop__rent
     en: Wanted
 
 - model: bili_api.category
-  pk: property__rent__holiday
+  pk: prop__rent__holiday
   fields:
-    parent: property__rent
+    parent: prop__rent
     en: Holiday Rentals
 
 - model: bili_api.category
-  pk: property__rent__home_swap
+  pk: prop__rent__home_swap
   fields:
-    parent: property__rent
+    parent: prop__rent
     en: Home Swap
 
 - model: bili_api.category
-  pk: property__rent__office
+  pk: prop__rent__office
   fields:
-    parent: property__rent
+    parent: prop__rent
     en: Office Space
 
 - model: bili_api.category
-  pk: property__rent__psg
+  pk: prop__rent__psg
   fields:
-    parent: property__rent
+    parent: prop__rent
     en: Parking, Storage & Garage
 
 ############################# Property > Rent > Offered ########################
 
 - model: bili_api.category
-  pk: property__rent__offered__studio
+  pk: prop__rent__offered__studio
   fields:
-    parent: property__rent__offered
+    parent: prop__rent__offered
     en: Studio
 
 - model: bili_api.category
-  pk: property__rent__offered__short_term
+  pk: prop__rent__offered__short_term
   fields:
-    parent: property__rent__offered
+    parent: prop__rent__offered
     en: Short Term
 
 ############################# Property > Rent > Holiday ########################
 
 - model: bili_api.category
-  pk: property__rent__holiday__outside
+  pk: prop__rent__holiday__outside
   fields:
-    parent: property__rent__holiday
+    parent: prop__rent__holiday
     en: Overseas
 
 - model: bili_api.category
-  pk: property__rent__holiday__local
+  pk: prop__rent__holiday__local
   fields:
-    parent: property__rent__holiday
+    parent: prop__rent__holiday
     en: Local
 
 ############################# Property > Rent > Office #########################
 
 - model: bili_api.category
-  pk: property__rent__office__desk
+  pk: prop__rent__office__desk
   fields:
-    parent: property__rent__office
+    parent: prop__rent__office
     en: Desk Space
 
 - model: bili_api.category
-  pk: property__rent__office__offered
+  pk: prop__rent__office__offered
   fields:
-    parent: property__rent__office
+    parent: prop__rent__office
     en: Offered
 
 - model: bili_api.category
-  pk: property__rent__office__wanted
+  pk: prop__rent__office__wanted
   fields:
-    parent: property__rent__office
+    parent: prop__rent__office
     en: Wanted
 
 - model: bili_api.category
-  pk: property__rent__office__retail
+  pk: prop__rent__office__retail
   fields:
-    parent: property__rent__office
+    parent: prop__rent__office
     en: Retail
 
 - model: bili_api.category
-  pk: property__rent__office__other
+  pk: prop__rent__office__other
   fields:
-    parent: property__rent__office
+    parent: prop__rent__office
     en: Other Commercial
 
 ################### Property > Rent > Parking, Storage & Garage ################
 
 - model: bili_api.category
-  pk: property__rent__office__psg__offered
+  pk: prop__rent__office__psg__offered
   fields:
-    parent: property__rent__psg
+    parent: prop__rent__psg
     en: Offered
 
 - model: bili_api.category
-  pk: property__rent__office__psg__wanted
+  pk: prop__rent__office__psg__wanted
   fields:
-    parent: property__rent__psg
+    parent: prop__rent__psg
     en: Wanted
 
 ############################### Property > Share ###############################
 
 - model: bili_api.category
-  pk: property__share__offered
+  pk: prop__share__offered
   fields:
-    parent: property__share
+    parent: prop__share
     en: Offered
 
 - model: bili_api.category
-  pk: property__share__wanted
+  pk: prop__share__wanted
   fields:
-    parent: property__share
+    parent: prop__share
     en: Wanted
 
 ############################# Property > Share > Offered #######################
 
 - model: bili_api.category
-  pk: property__share__offered__agents
+  pk: prop__share__offered__agents
   fields:
-    parent: property__share__offered
+    parent: prop__share__offered
     en: Commercial Landlords & Agents
 
 - model: bili_api.category
-  pk: property__share__offered__double
+  pk: prop__share__offered__double
   fields:
-    parent: property__share__offered
+    parent: prop__share__offered
     en: Double Room
 
 - model: bili_api.category
-  pk: property__share__offered__single
+  pk: prop__share__offered__single
   fields:
-    parent: property__share__offered
+    parent: prop__share__offered
     en: Single Room
 
 - model: bili_api.category
-  pk: property__share__offered__roomshare
+  pk: prop__share__offered__roomshare
   fields:
-    parent: property__share__offered
+    parent: prop__share__offered
     en: Roomshare
 
 - model: bili_api.category
-  pk: property__share__offered__short_term
+  pk: prop__share__offered__short_term
   fields:
-    parent: property__share__offered
+    parent: prop__share__offered
     en: Short Term
 
 - model: bili_api.category
-  pk: property__share__offered__multi_bed
+  pk: prop__share__offered__multi_bed
   fields:
-    parent: property__share__offered
+    parent: prop__share__offered
     en: Multiple bed room
 
 ############################ Property > Share > Wanted #########################
 
 - model: bili_api.category
-  pk: property__share__wanted__flatshare
+  pk: prop__share__wanted__flatshare
   fields:
-    parent: property__share__wanted
+    parent: prop__share__wanted
     en: Flat Share
 
 - model: bili_api.category
-  pk: property__share__wanted__short_term
+  pk: prop__share__wanted__short_term
   fields:
-    parent: property__share__wanted
+    parent: prop__share__wanted
     en: Short Term
 
 ################################ Property > Sale ###############################
 
 - model: bili_api.category
-  pk: property__sale__commercial
+  pk: prop__sale__commercial
   fields:
-    parent: property__sale
+    parent: prop__sale
     en: Commercial
 
 - model: bili_api.category
-  pk: property__sale__flat
+  pk: prop__sale__flat
   fields:
-    parent: property__sale
+    parent: prop__sale
     en: Flats
 
 - model: bili_api.category
-  pk: property__sale__house
+  pk: prop__sale__house
   fields:
-    parent: property__sale
+    parent: prop__sale
     en: Houses
 
 - model: bili_api.category
-  pk: property__sale__new_home
+  pk: prop__sale__new_home
   fields:
-    parent: property__sale
+    parent: prop__sale
     en: New Home
 
 - model: bili_api.category
-  pk: property__sale__other
+  pk: prop__sale__other
   fields:
-    parent: property__sale
+    parent: prop__sale
     en: Other Property for Sale
 
 ############################ Property > Sale > Flat ############################
 
 - model: bili_api.category
-  pk: property__sale__flat__studio
+  pk: prop__sale__flat__studio
   fields:
-    parent: property__sale__flat
+    parent: prop__sale__flat
     en: Studio Flats
