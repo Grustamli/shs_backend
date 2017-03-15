@@ -3,9 +3,12 @@ from rest_framework.generics import (ListCreateAPIView, RetrieveUpdateDestroyAPI
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.filters import SearchFilter
 from rest_framework import status
-from django.http import Http404
+from django_filters.rest_framework import DjangoFilterBackend
 
+from django.http import Http404
+from ..filters import AdFilter
 
 from ..models.ads import Ad
 from ..models.add_on import AppliedAddOn
@@ -14,6 +17,9 @@ from rest_framework.parsers import JSONParser
 
 class AdListView(ListCreateAPIView):
     queryset = Ad.objects.all()
+    filter_backends = (SearchFilter, DjangoFilterBackend)
+    filter_class = AdFilter
+    search_fields = ['$title', '$description']
     def get_serializer_class(self):
         serializer_class = AdListSerializer
         if self.request.method == 'POST':

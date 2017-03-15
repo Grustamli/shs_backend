@@ -15,7 +15,7 @@ from uuid import uuid4
 class Ad(models.Model):
     uuid = models.CharField(primary_key=True, editable=False, max_length=100)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ads')
-    category = models.ForeignKey(Category, related_name='ads')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='ads')
     title = models.CharField(max_length=250)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField()

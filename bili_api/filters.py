@@ -1,21 +1,23 @@
-# from django_filters.rest_framework import FilterSet
-# import django_filters
-#
-#
-# from .models.ads import  Ad
-# from .models.ad_extensions import (
-#                             Property,
-#                             Vehicle
-#                             )
-#
-# class AdFilter(FilterSet):
-#     min_price = django_filters.NumberFilter(name='price', lookup_expr='gte')
-#     max_price = django_filters.NumberFilter(name='price', lookup_expr='lte')
-#     category = django_filters.CharFilter(name='category__name')
-#
-#     class Meta:
-#         model = Ad
-#         fields = ['category', 'min_price', 'max_price']
+from django_filters.rest_framework import FilterSet
+import django_filters
+
+from .helpers.getAllSubCategories import get_all_subcategories
+from .models.ads import  Ad
+
+class AdFilter(FilterSet):
+
+    min_price = django_filters.NumberFilter(name='price', lookup_expr='gte')
+    max_price = django_filters.NumberFilter(name='price', lookup_expr='lte')
+    category = django_filters.CharFilter(method='category_filter')
+
+    def category_filter(self, queryset, name, value):
+        sub_cat_names = get_all_subcategories(value)
+        filtered_queryset = queryset.filter(category__name__in=sub_cat_names)
+        return filtered_queryset
+
+    class Meta:
+        model = Ad
+        fields = ['category', 'min_price', 'max_price']
 #
 #
 # class PropertyFilter(FilterSet):
