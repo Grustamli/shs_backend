@@ -3,51 +3,51 @@
 - model: bili_api.category
   pk: prop
   fields:
-    en: Property
-    az: Emlak
+    lang_en: Property
+    lang_az: Emlak
     tr: Emlak
 
 - model: bili_api.category
   pk: mtr
   fields:
-    en: motor
-    az: Neqliyyat
+    lang_en: motor
+    lang_az: Neqliyyat
     tr: Oto
 
 - model: bili_api.category
   pk: pet
   fields:
-    en: Pets
-    az: Heyvanlar
+    lang_en: Pets
+    lang_az: Heyvanlar
     tr: Hayvanlar
 
 - model: bili_api.category
   pk: srvc
   fields:
-    en: Services
-    az: Xidmetler
+    lang_en: Services
+    lang_az: Xidmetler
     tr: Hizmetler
 
 
 - model: bili_api.category
   pk: cmty
   fields:
-    en: Community
-    az: Ictimai
+    lang_en: Community
+    lang_az: Ictimai
     tr: Sosyel
 
 - model: bili_api.category
   pk: job
   fields:
-    en: Jobs
-    az: Isler
+    lang_en: Jobs
+    lang_az: Isler
     tr: Isler
 
 - model: bili_api.category
   pk: good
   fields:
-    en: For Sale
-    az: Al sat
+    lang_en: For Sale
+    lang_az: Al sat
     tr: Al sat
 
 ###################### Motor Subcategories: 1st level ##########################
@@ -56,69 +56,69 @@
   pk: mtr__car
   fields:
     parent: mtr
-    en: Cars
-    az: Avtomobiller
+    lang_en: Cars
+    lang_az: Avtomobiller
     tr: Otomobil
 
 - model: bili_api.category
   pk: mtr__motorbike
   fields:
     parent: mtr
-    en: Motorbikes & Scooters
+    lang_en: Motorbikes & Scooters
 
 - model: bili_api.category
   pk: mtr__van
   fields:
     parent: mtr
-    en: Vans
+    lang_en: Vans
 
 - model: bili_api.category
   pk: mtr__caravan
   fields:
     parent: mtr
-    en: Caravans
+    lang_en: Caravans
 
 - model: bili_api.category
   pk: mtr__campervan
   fields:
     parent: mtr
-    en: Campervans & Motorhomes
+    lang_en: Campervans & Motorhomes
 
 - model: bili_api.category
   pk: mtr__truck
   fields:
     parent: mtr
-    en: Trucks
+    lang_en: Trucks
 
 - model: bili_api.category
   pk: mtr__heavy
   fields:
     parent: mtr
-    en: Heavy Machinery
+    lang_en: Heavy Machinery
 
 - model: bili_api.category
   pk: mtr__other
   fields:
     parent: mtr
-    en: Other Vehicles
+    lang_en: Other Vehicles
 
 - model: bili_api.category
   pk: mtr__acc
   fields:
     parent: mtr
-    en: Accessories
+    lang_en: Accessories
 
 - model: bili_api.category
   pk: mtr__part
   fields:
     parent: mtr
-    en: Parts
+    lang_en: Parts
 
 - model: bili_api.category
   pk: mtr__wanted
   fields:
     parent: mtr
-    en: Wanted
+    lang_en: Wanted
 
 ############################## Motor > Accessory ###############################
 
@@ -126,43 +126,43 @@
   pk: mtr__acc__tuning
   fields:
     parent: mtr__acc
-    en: Car Tuning & Styling
+    lang_en: Car Tuning & Styling
 
 - model: bili_api.category
   pk: mtr__acc__clothing
   fields:
     parent: mtr__acc
-    en: Clothing
+    lang_en: Clothing
 
 - model: bili_api.category
   pk: mtr__acc__audio
   fields:
     parent: mtr__acc
-    en: In car Audio
+    lang_en: In car Audio
 
 - model: bili_api.category
   pk: mtr__acc__gps
   fields:
     parent: mtr__acc
-    en: GPS
+    lang_en: GPS
 
 - model: bili_api.category
   pk: mtr__acc__motorbike_tuning
   fields:
     parent: mtr__acc
-    en: Motorbike Accessories & Tuning
+    lang_en: Motorbike Accessories & Tuning
 
 - model: bili_api.category
   pk: mtr__acc__other
   fields:
     parent: mtr__acc
-    en: Other Accessories
+    lang_en: Other Accessories
 
 - model: bili_api.category
   pk: mtr__acc__wheel
   fields:
     parent: mtr__acc
-    en: Wheel Rims & Tyres
+    lang_en: Wheel Rims & Tyres
 
 ################################## Motor > Parts ###############################
 
@@ -170,37 +170,37 @@
   pk: mtr__part__car
   fields:
     parent: mtr__part
-    en: Car Parts
+    lang_en: Car Parts
 
 - model: bili_api.category
   pk: mtr__part__motorbike
   fields:
     parent: mtr__part
-    en: Motorbike & Scooters Parts
+    lang_en: Motorbike & Scooters Parts
 
 - model: bili_api.category
   pk: mtr__part__van
   fields:
     parent: mtr__part
-    en: Van Parts
+    lang_en: Van Parts
 
 - model: bili_api.category
   pk: mtr__part__campervan
   fields:
     parent: mtr__part
-    en: Campervan Parts
+    lang_en: Campervan Parts
 
 - model: bili_api.category
   pk: mtr__part__truck
   fields:
     parent: mtr__part
-    en: Trucks Parts
+    lang_en: Trucks Parts
 
 - model: bili_api.category
   pk: mtr__part__heavy
   fields:
     parent: mtr__part
-    en: Heavy Machinery Parts
+    lang_en: Heavy Machinery Parts
 
 ###################### Property Subcategories: 1st Level #######################
 
@@ -208,25 +208,25 @@
   pk: prop__land
   fields:
     parent: prop
-    en: Lands & Farms
+    lang_en: Lands & Farms
 
 - model: bili_api.category
   pk: prop__rent
   fields:
     parent: prop
-    en: To Rent
+    lang_en: To Rent
 
 - model: bili_api.category
   pk: prop__share
   fields:
     parent: prop
-    en: To Share
+    lang_en: To Share
 
 - model: bili_api.category
   pk: prop__sale
   fields:
     parent: prop
-    en: For Sale
+    lang_en: For Sale
 
 ################################# Property > Land ##############################
 
@@ -234,37 +234,37 @@
   pk: prop__land__country_house
   fields:
     parent: prop__land
-    en: Country Houses
+    lang_en: Country Houses
 
 - model: bili_api.category
   pk: prop__land__equestrian
   fields:
     parent: prop__land
-    en: Equestrian
+    lang_en: Equestrian
 
 - model: bili_api.category
   pk: prop__land__farm
   fields:
     parent: prop__land
-    en: Farms
+    lang_en: Farms
 
 - model: bili_api.category
   pk: prop__land__land
   fields:
     parent: prop__land
-    en: Lands
+    lang_en: Lands
 
 - model: bili_api.category
   pk: prop__land__rural_business
   fields:
     parent: prop__land
-    en: Rural Business
+    lang_en: Rural Business
 
 - model: bili_api.category
   pk: prop__land__woodland
   fields:
     parent: prop__land
-    en: Woodland
+    lang_en: Woodland
 
 ################################## Property > Rent #############################
 
@@ -272,37 +272,37 @@
   pk: prop__rent__offered
   fields:
     parent: prop__rent
-    en: Offered
+    lang_en: Offered
 
 - model: bili_api.category
   pk: prop__rent__wanted
   fields:
     parent: prop__rent
-    en: Wanted
+    lang_en: Wanted
 
 - model: bili_api.category
   pk: prop__rent__holiday
   fields:
     parent: prop__rent
-    en: Holiday Rentals
+    lang_en: Holiday Rentals
 
 - model: bili_api.category
   pk: prop__rent__home_swap
   fields:
     parent: prop__rent
-    en: Home Swap
+    lang_en: Home Swap
 
 - model: bili_api.category
   pk: prop__rent__office
   fields:
     parent: prop__rent
-    en: Office Space
+    lang_en: Office Space
 
 - model: bili_api.category
   pk: prop__rent__psg
   fields:
     parent: prop__rent
-    en: Parking, Storage & Garage
+    lang_en: Parking, Storage & Garage
 
 ############################# Property > Rent > Offered ########################
 
@@ -310,13 +310,13 @@
   pk: prop__rent__offered__studio
   fields:
     parent: prop__rent__offered
-    en: Studio
+    lang_en: Studio
 
 - model: bili_api.category
   pk: prop__rent__offered__short_term
   fields:
     parent: prop__rent__offered
-    en: Short Term
+    lang_en: Short Term
 
 ############################# Property > Rent > Holiday ########################
 
@@ -324,13 +324,13 @@
   pk: prop__rent__holiday__outside
   fields:
     parent: prop__rent__holiday
-    en: Overseas
+    lang_en: Overseas
 
 - model: bili_api.category
   pk: prop__rent__holiday__local
   fields:
     parent: prop__rent__holiday
-    en: Local
+    lang_en: Local
 
 ############################# Property > Rent > Office #########################
 
@@ -338,31 +338,31 @@
   pk: prop__rent__office__desk
   fields:
     parent: prop__rent__office
-    en: Desk Space
+    lang_en: Desk Space
 
 - model: bili_api.category
   pk: prop__rent__office__offered
   fields:
     parent: prop__rent__office
-    en: Offered
+    lang_en: Offered
 
 - model: bili_api.category
   pk: prop__rent__office__wanted
   fields:
     parent: prop__rent__office
-    en: Wanted
+    lang_en: Wanted
 
 - model: bili_api.category
   pk: prop__rent__office__retail
   fields:
     parent: prop__rent__office
-    en: Retail
+    lang_en: Retail
 
 - model: bili_api.category
   pk: prop__rent__office__other
   fields:
     parent: prop__rent__office
-    en: Other Commercial
+    lang_en: Other Commercial
 
 ################### Property > Rent > Parking, Storage & Garage ################
 
@@ -370,13 +370,13 @@
   pk: prop__rent__office__psg__offered
   fields:
     parent: prop__rent__psg
-    en: Offered
+    lang_en: Offered
 
 - model: bili_api.category
   pk: prop__rent__office__psg__wanted
   fields:
     parent: prop__rent__psg
-    en: Wanted
+    lang_en: Wanted
 
 ############################### Property > Share ###############################
 
@@ -384,13 +384,13 @@
   pk: prop__share__offered
   fields:
     parent: prop__share
-    en: Offered
+    lang_en: Offered
 
 - model: bili_api.category
   pk: prop__share__wanted
   fields:
     parent: prop__share
-    en: Wanted
+    lang_en: Wanted
 
 ############################# Property > Share > Offered #######################
 
@@ -398,37 +398,37 @@
   pk: prop__share__offered__agents
   fields:
     parent: prop__share__offered
-    en: Commercial Landlords & Agents
+    lang_en: Commercial Landlords & Agents
 
 - model: bili_api.category
   pk: prop__share__offered__double
   fields:
     parent: prop__share__offered
-    en: Double Room
+    lang_en: Double Room
 
 - model: bili_api.category
   pk: prop__share__offered__single
   fields:
     parent: prop__share__offered
-    en: Single Room
+    lang_en: Single Room
 
 - model: bili_api.category
   pk: prop__share__offered__roomshare
   fields:
     parent: prop__share__offered
-    en: Roomshare
+    lang_en: Roomshare
 
 - model: bili_api.category
   pk: prop__share__offered__short_term
   fields:
     parent: prop__share__offered
-    en: Short Term
+    lang_en: Short Term
 
 - model: bili_api.category
   pk: prop__share__offered__multi_bed
   fields:
     parent: prop__share__offered
-    en: Multiple bed room
+    lang_en: Multiple bed room
 
 ############################ Property > Share > Wanted #########################
 
@@ -436,13 +436,13 @@
   pk: prop__share__wanted__flatshare
   fields:
     parent: prop__share__wanted
-    en: Flat Share
+    lang_en: Flat Share
 
 - model: bili_api.category
   pk: prop__share__wanted__short_term
   fields:
     parent: prop__share__wanted
-    en: Short Term
+    lang_en: Short Term
 
 ################################ Property > Sale ###############################
 
@@ -450,31 +450,31 @@
   pk: prop__sale__commercial
   fields:
     parent: prop__sale
-    en: Commercial
+    lang_en: Commercial
 
 - model: bili_api.category
   pk: prop__sale__flat
   fields:
     parent: prop__sale
-    en: Flats
+    lang_en: Flats
 
 - model: bili_api.category
   pk: prop__sale__house
   fields:
     parent: prop__sale
-    en: Houses
+    lang_en: Houses
 
 - model: bili_api.category
   pk: prop__sale__new_home
   fields:
     parent: prop__sale
-    en: New Home
+    lang_en: New Home
 
 - model: bili_api.category
   pk: prop__sale__other
   fields:
     parent: prop__sale
-    en: Other Property for Sale
+    lang_en: Other Property for Sale
 
 ############################ Property > Sale > Flat ############################
 
@@ -482,4 +482,4 @@
   pk: prop__sale__flat__studio
   fields:
     parent: prop__sale__flat
-    en: Studio Flats
+    lang_en: Studio Flats

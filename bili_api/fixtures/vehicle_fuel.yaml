@@ -1,35 +1,35 @@
 - model: bili_api.vehiclefuel
   pk: diesel
   fields:
-    en: Diesel
-    az: Dizel
+    lang_en: Diesel
+    lang_az: Dizel
 
 - model: bili_api.vehiclefuel
   pk: petrol
   fields:
-    en: Petrol
-    az: Benzin
+    lang_en: Petrol
+    lang_az: Benzin
 
 - model: bili_api.vehiclefuel
   pk: lpg
   fields:
-    en: LPG
-    az: Maye qaz
+    lang_en: LPG
+    lang_az: Maye qaz
 
 - model: bili_api.vehiclefuel
   pk: biofuel
   fields:
-    en: Biofuel
-    az: Bioyanacaq
+    lang_en: Biofuel
+    lang_az: Bioyanacaq
 
 - model: bili_api.vehiclefuel
   pk: hybrid
   fields:
-    en: Hybrid
-    az: Hibrid
+    lang_en: Hybrid
+    lang_az: Hibrid
 
 - model: bili_api.vehiclefuel
   pk: electric
   fields:
-    en: Electric
-    az: Elektrik
+    lang_en: Electric
+    lang_az: Elektrik
