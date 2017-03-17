@@ -7,7 +7,7 @@ from ..models.ads import Ad
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'Ads': reverse('ad_list', request=request, format=format),
+        'Posts': reverse('posts_list', request=request, format=format),
         'Categories': reverse('category_list', request=request, format=format),
         'Vehicle Props': reverse('vehicle_props', request=request, format=format),
         'Favorites': reverse('favorites', request=request, format=format),
