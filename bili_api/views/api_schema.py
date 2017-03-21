@@ -14,7 +14,8 @@ def api_root(request, format=None):
         'Add Ons': reverse('add_ons', request=request, format=format),
         'Ad Images': reverse('ad_images', request=request, format=format),
         'Register': reverse('register', request=request, format=format),
-        'Search Alerts': reverse('search_alerts', request=request, format=format)
+        'Search Alerts': reverse('search_alerts', request=request, format=format),
+        'Cities': reverse('city_list', request=request, format=format),
     })
 
 @api_view(['GET'])
