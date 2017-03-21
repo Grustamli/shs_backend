@@ -1,0 +1,25 @@
+- model: bili_api.city
+  pk: baku
+  fields:
+    lang_en: Baku
+    lang_az: Baki
+
+
+- model: bili_api.city
+  pk: sumgayit
+  fields:
+    lang_en: Sumgayit
+    lang_az: Sumqayit
+
+- model: bili_api.city
+  pk: ganja
+  fields:
+    lang_en: Ganja
+    lang_az: Gence
+
+
+- model: bili_api.city
+  pk: lenkeran
+  fields:
+    lang_en: Lankaran
+    lang_az: Lenkeran
