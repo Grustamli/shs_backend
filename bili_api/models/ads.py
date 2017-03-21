@@ -63,7 +63,7 @@ class Message(models.Model):
 
 class AdAddress(models.Model):
     ad = models.OneToOneField(Ad, on_delete=models.CASCADE, related_name='address')
-    city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='addresses')
+    city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='ad_addresses')
     def __str__(self):
         return self.city.name
 

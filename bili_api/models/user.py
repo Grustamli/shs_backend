@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
+from .geolocation import City
 
 # Create your models here.
 
@@ -19,9 +20,7 @@ class PhoneNumber(models.Model):
 
 class UserAddress(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='address')
-    address = models.CharField(max_length=150)
-    region = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='user_addresses')
 
     def __str__(self):
         return self.address + ', ' + self.region + ', ' + self.city
