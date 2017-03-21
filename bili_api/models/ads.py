@@ -2,10 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 from django.db.models.signals import post_save
-from django.dispatch import receiver
 
+from .geolocation import City
 from .user import (UserAddress,)
 from .categories import Category
 import datetime
@@ -61,12 +63,10 @@ class Message(models.Model):
 
 class AdAddress(models.Model):
     ad = models.OneToOneField(Ad, on_delete=models.CASCADE, related_name='address')
-    address = models.CharField(max_length=150)
-    region = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
-
+    city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='addresses')
     def __str__(self):
-        return self.address + ', ' + self.region + ', ' + self.city
+        return self.city.name
+
 
 
 
