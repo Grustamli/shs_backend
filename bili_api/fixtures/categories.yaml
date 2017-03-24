@@ -5,28 +5,28 @@
   fields:
     lang_en: Property
     lang_az: Emlak
-    tr: Emlak
+    lang_tr: Emlak
 
 - model: bili_api.category
   pk: mtr
   fields:
     lang_en: motor
     lang_az: Neqliyyat
-    tr: Oto
+    lang_tr: Oto
 
 - model: bili_api.category
   pk: pet
   fields:
     lang_en: Pets
     lang_az: Heyvanlar
-    tr: Hayvanlar
+    lang_tr: Hayvanlar
 
 - model: bili_api.category
   pk: srvc
   fields:
     lang_en: Services
     lang_az: Xidmetler
-    tr: Hizmetler
+    lang_tr: Hizmetler
 
 
 - model: bili_api.category
@@ -34,21 +34,21 @@
   fields:
     lang_en: Community
     lang_az: Ictimai
-    tr: Sosyel
+    lang_tr: Sosyel
 
 - model: bili_api.category
   pk: job
   fields:
     lang_en: Jobs
     lang_az: Isler
-    tr: Isler
+    lang_tr: Isler
 
 - model: bili_api.category
   pk: good
   fields:
     lang_en: For Sale
     lang_az: Al sat
-    tr: Al sat
+    lang_tr: Al sat
 
 ###################### Motor Subcategories: 1st level ##########################
 
@@ -58,7 +58,7 @@
     parent: mtr
     lang_en: Cars
     lang_az: Avtomobiller
-    tr: Otomobil
+    lang_tr: Otomobil
 
 - model: bili_api.category
   pk: mtr__motorbike

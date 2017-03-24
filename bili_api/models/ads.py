@@ -7,6 +7,7 @@ from .contact_info import *
 from django.db.models.signals import post_save
 
 from .geolocation import City
+# from .user import (UserAddress,)
 from .categories import Category
 import datetime
 from  base64 import urlsafe_b64encode
