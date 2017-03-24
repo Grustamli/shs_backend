@@ -2,13 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
-
+from django.contrib.contenttypes.fields import GenericRelation
+from .contact_info import *
 from django.db.models.signals import post_save
 
 from .geolocation import City
-from .user import (UserAddress,)
 from .categories import Category
 import datetime
 from  base64 import urlsafe_b64encode
@@ -23,7 +21,8 @@ class Ad(models.Model):
     price = models.IntegerField()
     published = models.DateTimeField('publish date', auto_now_add=True)
     active_from = models.DateField(null=True, blank=True)
-
+    address = GenericRelation(Address)
+    phone_number = GenericRelation(PhoneNumber)
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         super().save(*args, **kwargs)
@@ -61,11 +60,8 @@ class Message(models.Model):
     content = models.TextField()
 
 
-class AdAddress(models.Model):
-    ad = models.OneToOneField(Ad, on_delete=models.CASCADE, related_name='address')
-    city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='ad_addresses')
-    def __str__(self):
-        return self.city.name
+
+
 
 
 
