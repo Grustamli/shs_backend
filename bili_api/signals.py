@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models.user import Profile
+from .models.user import (Profile, PrivacySetting)
 from django.contrib.auth.models import User
 
 # Auto Create Profile for each new user
