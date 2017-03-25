@@ -5,5 +5,6 @@ from django.contrib.auth.models import User
 
 @receiver(post_save, sender=User)
 def autoCreateProfile(sender, instance, created, **kwargs):
+    print(instance)
     if created:
         Profile.objects.create(owner=instance)
