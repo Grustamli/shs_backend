@@ -9,11 +9,10 @@ class PrivacySettingListSerializer(serializers.ModelSerializer):
 
 
 class ProfileListSerializer(serializers.ModelSerializer):
-    privacy_settings    = PrivacySettingListSerializer(source='owner.privacy_setting')
     username            = serializers.CharField(source='owner.username')
     email               = serializers.CharField(source='owner.email')
     # address             = AddressRelatedField(read_only=True)
     phone_number        = serializers.StringRelatedField(many=True)
     class Meta:
         model           = Profile
-        fields          = ('profile_pic','username', 'email','phone_number', 'privacy_settings')
+        fields          = ('profile_pic','username', 'email','phone_number', 'privacy_setting')
