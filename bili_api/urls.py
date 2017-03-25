@@ -1,19 +1,20 @@
-from django.conf.urls import(url, include)
-from rest_framework_swagger.views import get_swagger_view
-from rest_framework import routers
-from .views.ads import (AdListView, AdDetailView)
-from .views.api_schema import *
-from .views.categories import CategoryListView
-from .views.vehicle_data import VehiclePropListView
-from .views.user_favorites import (UserFavoriteListView, UserFavoriteDetailView)
-from .views.add_on import AddOnListView
-from .views.ad_image import (AdImageListApiView, AdImageDetailApiView)
-from .views.register import RegisterListView
-from .views.search_alert import *
-from .views.verify_username import VerifyUsername
-from .views.ad_extensions import *
-from .views.user_posts import UserPostsListView
-from .views.geolocation import CityListView
+from django.conf.urls               import(url, include)
+from rest_framework_swagger.views   import get_swagger_view
+from rest_framework                 import routers
+from .views.ads                     import (AdListView, AdDetailView)
+from .views.api_schema              import *
+from .views.categories              import CategoryListView
+from .views.vehicle_data            import VehiclePropListView
+from .views.user_favorites          import (UserFavoriteListView, UserFavoriteDetailView)
+from .views.add_on                  import AddOnListView
+from .views.ad_image                import (AdImageListApiView, AdImageDetailApiView)
+from .views.register                import RegisterListView
+from .views.search_alert            import *
+from .views.verify_username         import VerifyUsername
+from .views.ad_extensions           import *
+from .views.user_posts              import UserPostsListView
+from .views.geolocation             import CityListView
+from .views.profile                 import ProfileListCreateAPIView
 
 urlpatterns = [
     url(r'^$', api_root),
@@ -35,6 +36,7 @@ urlpatterns = [
     url(r'^vehicle-ads', VehicleAdListCreateView.as_view(), name='vehicle_ads'),
     url(r'^property-ads', PropertyAdListCreateView.as_view(), name='property_ads'),
     url(r'^user-posts/(?P<username>[\w-]+)$', UserPostsListView.as_view(), name='user-posts'),
+    url(r'^profiles', ProfileListCreateAPIView.as_view(), name='profile_list')
 ]
 
 helper_urls = [

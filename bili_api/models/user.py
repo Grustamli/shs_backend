@@ -8,11 +8,10 @@ from .contact_info import *
 
 
 class Profile(models.Model):
-
     owner           = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number    = GenericRelation(PhoneNumber)
     address         = GenericRelation(Address)
-
+    website         = GenericRelation(Website)
     def profile_pic_directory_path(instance, filename):
         user = instance.owner.username
         return 'profile_pics/{0}/{1}'.format(user,filename)

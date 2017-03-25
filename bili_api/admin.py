@@ -8,7 +8,7 @@ from .models.add_on import AddOnType
 from .models.property_data import PaymentPeriod
 from .models.vehicle_data import *
 from .models.contact_info import *
-from .models.user import Profile
+from .models.user import *
 
 
 class UserProfileInline(admin.StackedInline):
@@ -17,7 +17,7 @@ class UserProfileInline(admin.StackedInline):
     verbose_name_plural = 'profile'
 
 class UserAdmin(UserAdmin):
-    inlines = (UserProfileInline, )
+    inlines = (UserProfileInline,)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

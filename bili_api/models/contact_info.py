@@ -23,3 +23,14 @@ class PhoneNumber(models.Model):
         unique_together = ('content_type', 'object_id')
     def __str__(self):
         return self.number
+
+
+class Website(models.Model):
+    url             = models.CharField(max_length=100)
+    content_type    = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id       = models.PositiveIntegerField()
+    content_object  = GenericForeignKey('content_type', 'object_id')
+    class Meta:
+        unique_together = ('content_type', 'object_id')
+    def __str__(self):
+        return self.url

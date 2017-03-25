@@ -24,6 +24,7 @@ class Ad(models.Model):
     active_from     = models.DateField(null=True, blank=True)
     address         = GenericRelation(Address)
     phone_number    = GenericRelation(PhoneNumber)
+    website         = GenericRelation(Website)
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         super().save(*args, **kwargs)
@@ -36,18 +37,18 @@ class Ad(models.Model):
 
 
 class AdImage(models.Model):
-    ad = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images')
+    ad              = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images')
     def user_directory_path(instance, filename):
         ad = instance.ad.uuid
         return 'ad-images/{0}/{1}'.format(ad,filename)
 
-    image = models.ImageField(upload_to=user_directory_path)
+    image           = models.ImageField(upload_to=user_directory_path)
     def __str__(self):
         return self.ad.title
 
 class Favourite(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favourites')
-    ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
+    owner           = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favourites')
+    ad              = models.ForeignKey(Ad, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('owner', 'ad')
@@ -55,10 +56,10 @@ class Favourite(models.Model):
 
 
 class Message(models.Model):
-    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
-    receiver = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
-    sent_time = models.DateTimeField(auto_now_add=True)
-    content = models.TextField()
+    sender          = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
+    receiver        = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
+    sent_time       = models.DateTimeField(auto_now_add=True)
+    content         = models.TextField()
 
 
 
