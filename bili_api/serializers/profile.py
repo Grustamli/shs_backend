@@ -16,4 +16,4 @@ class ProfileListSerializer(serializers.ModelSerializer):
     phone_number        = serializers.StringRelatedField(many=True)
     class Meta:
         model           = Profile
-        fields          = ('username', 'email','phone_number', 'privacy_settings')
+        fields          = ('profile_pic','username', 'email','phone_number', 'privacy_settings')
