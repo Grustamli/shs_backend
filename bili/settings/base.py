@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bili_api',
+    'bili_api.apps.BiliApiConfig',
     'rest_framework',
     'rest_framework_swagger',
     'django_filters',
