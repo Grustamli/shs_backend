@@ -16,6 +16,7 @@ class ProfileListSerializer(serializers.ModelSerializer):
     address             = serializers.StringRelatedField(many=True)
     phone_number        = serializers.StringRelatedField(many=True)
     website             = serializers.StringRelatedField(many=True)
+    privacy_setting     = PrivacySettingListSerializer
     class Meta:
         model           = Profile
         fields          = ('profile_pic','username', 'email', 'first_name', 'last_name',
