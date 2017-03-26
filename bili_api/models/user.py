@@ -16,7 +16,7 @@ class Profile(models.Model):
         user = instance.owner.username
         return 'profile_pics/{0}/{1}'.format(user,filename)
 
-    profile_pic     = models.ImageField(upload_to=profile_pic_directory_path)
+    profile_pic     = models.ImageField(upload_to=profile_pic_directory_path, null=True)
 
 
     def __str__(self):

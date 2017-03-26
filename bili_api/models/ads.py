@@ -20,6 +20,7 @@ class Ad(models.Model):
     title           = models.CharField(max_length=250)
     description     = models.TextField(null=True, blank=True)
     price           = models.IntegerField()
+    negotiable      = models.BooleanField(default=False)
     published       = models.DateTimeField('publish date', auto_now_add=True)
     active_from     = models.DateField(null=True, blank=True)
     address         = GenericRelation(Address)
@@ -27,6 +28,8 @@ class Ad(models.Model):
     website         = GenericRelation(Website)
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
+        if not self.price:
+            self.negotiable = True
         super().save(*args, **kwargs)
 
 
