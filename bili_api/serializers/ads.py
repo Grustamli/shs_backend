@@ -50,10 +50,12 @@ class AdCreateSerializer(serializers.ModelSerializer):
     property                = PropertyOnlyFieldsSerializer(required=False)
     def create(self, validated_data):
         contact_data        = validated_data.pop('contact')
-        add_on_data         = validated_data.pop('add_on')
         ad                  = None
         vehicle_data        = validated_data.get('vehicle', None)
         property_data       = validated_data.get('property', None)
+        add_on_data         = validated_data.get('add_on', None)
+        if add_on_data is not None:
+            validated_data.pop('add_on')
         if vehicle_data is not None:
             vehicle_data    = validated_data.pop('vehicle')
             ad              = Vehicle.objects.create(**validated_data, **vehicle_data)
@@ -64,7 +66,6 @@ class AdCreateSerializer(serializers.ModelSerializer):
             ad              = Ad.objects.get(uuid=ad.uuid)
         else:
             ad              = Ad.objects.create(**validated_data)
-
         single_contact = contact_data[0]
         if single_contact:
             address         = Address.objects.create(**single_contact['address'])
