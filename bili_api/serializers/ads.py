@@ -45,7 +45,7 @@ class AdListSerializer(serializers.ModelSerializer):
 
 class AdCreateSerializer(serializers.ModelSerializer):
     contact            = ContactSerializer(many=True)
-    add_on                  = serializers.CharField(source='add_on.add_on_type')
+    add_on                  = serializers.CharField(source='add_on.add_on_type', required=False)
     vehicle                 = VehicleOnlyFieldsSerializer(required=False)
     property                = PropertyOnlyFieldsSerializer(required=False)
     def create(self, validated_data):
