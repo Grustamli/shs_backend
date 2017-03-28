@@ -12,7 +12,7 @@ from .ad_extensions import VehicleOnlyFieldsSerializer
 
 class AdListSerializer(serializers.ModelSerializer):
     add_on              = serializers.CharField(source='add_on.add_on_type')
-    contact_info        = AddressOnlyContactSerializer(many=True)
+    contact        = AddressOnlyContactSerializer(many=True)
     vehicle             = VehicleOnlyFieldsSerializer()
     property            = PropertyOnlyFieldsSerializer()
 
@@ -40,16 +40,16 @@ class AdListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ad
-        fields = ('uuid', 'category', 'title', 'price','negotiable', 'description', 'contact_info',
+        fields = ('uuid', 'category', 'title', 'price','negotiable', 'description', 'contact',
                  'add_on', 'vehicle', 'property')
 
 class AdCreateSerializer(serializers.ModelSerializer):
-    contact_info            = ContactInfoSerializer(many=True)
+    contact            = ContactInfoSerializer(many=True)
     add_on                  = serializers.CharField(source='add_on.add_on_type')
     vehicle                 = VehicleOnlyFieldsSerializer(required=False)
     property                = PropertyOnlyFieldsSerializer(required=False)
     def create(self, validated_data):
-        contact_data        = validated_data.pop('contact_info')
+        contact_data        = validated_data.pop('contact')
         add_on_data         = validated_data.pop('add_on')
         ad                  = None
         vehicle_data        = validated_data.get('vehicle', None)
@@ -65,23 +65,23 @@ class AdCreateSerializer(serializers.ModelSerializer):
         else:
             ad              = Ad.objects.create(**validated_data)
 
-        single_contact_info = contact_data[0]
-        if single_contact_info:
-            address         = Address.objects.create(**single_contact_info['address'])
-            phone_number    = PhoneNumber.objects.create(**single_contact_info['phone_number'])
-            website         = Website.objects.create(**single_contact_info['website'])
-            ad.contact_info.create(address=address, phone_number=phone_number, website=website)
+        single_contact = contact_data[0]
+        if single_contact:
+            address         = Address.objects.create(**single_contact['address'])
+            phone_number    = PhoneNumber.objects.create(**single_contact['phone_number'])
+            website         = Website.objects.create(**single_contact['website'])
+            ad.contact.create(address=address, phone_number=phone_number, website=website)
         add_on_type         = AddOnType.objects.get(name=add_on_data['add_on_type'])
         AppliedAddOn.objects.create(ad=ad, add_on_type=add_on_type)
         return ad
     class Meta:
         model = Ad
-        fields = ('title', 'description', 'category', 'price', 'negotiable', 'contact_info', 'add_on', 'vehicle', 'property')
+        fields = ('title', 'description', 'category', 'price', 'negotiable', 'contact', 'add_on', 'vehicle', 'property')
 
 
 # TODO: Implement AdUpdate
 class AdDetailSerializer(serializers.ModelSerializer):
-    contact_info            = ContactInfoSerializer(many=True)
+    contact            = ContactInfoSerializer(many=True)
     add_on                  = serializers.CharField(source='add_on.add_on_type')
     vehicle                 = VehicleOnlyFieldsSerializer()
     property                = PropertyOnlyFieldsSerializer()
@@ -100,4 +100,4 @@ class AdDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
         fields = ('title', 'description', 'category', 'price', 'negotiable',
-            'contact_info', 'add_on', 'images', 'vehicle', 'property')
+            'contact', 'add_on', 'images', 'vehicle', 'property')

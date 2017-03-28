@@ -4,10 +4,10 @@ from .contact_info import *
 
 class VehicleAdListCreateSerializer(serializers.ModelSerializer):
     add_on              = serializers.CharField(source='add_on.add_on_type')
-    contact_info        = AddressOnlyContactSerializer(many=True)
+    contact        = AddressOnlyContactSerializer(many=True)
     class Meta:
         model = Vehicle
-        fields = ('title', 'description', 'category', 'price', 'negotiable', 'contact_info', 'add_on',
+        fields = ('title', 'description', 'category', 'price', 'negotiable', 'contact', 'add_on',
                 'make', 'fuel', 'transmission', 'mileage', 'year', 'engine_size'
             )
 

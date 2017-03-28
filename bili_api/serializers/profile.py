@@ -16,7 +16,7 @@ class ProfileListSerializer(serializers.ModelSerializer):
     class Meta:
         model           = Profile
         fields          = ('profile_pic','username', 'email', 'first_name', 'last_name',
-                            'contact_info', 'privacy_setting')
+                            'contact', 'privacy_setting')
 
 
 # TODO: Implement Updating Profile
