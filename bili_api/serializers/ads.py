@@ -70,7 +70,7 @@ class AdCreateSerializer(serializers.ModelSerializer):
             address         = Address.objects.create(**single_contact['address'])
             phone_number    = PhoneNumber.objects.create(**single_contact['phone_number'])
             website         = Website.objects.create(**single_contact['website'])
-            ad.contact.create(address=address, phone_number=phone_number, website=website)
+            ad.contact_info.create(address=address, phone_number=phone_number, website=website)
         add_on_type         = AddOnType.objects.get(name=add_on_data['add_on_type'])
         AppliedAddOn.objects.create(ad=ad, add_on_type=add_on_type)
         return ad
