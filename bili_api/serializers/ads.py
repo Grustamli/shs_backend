@@ -49,31 +49,38 @@ class AdCreateSerializer(serializers.ModelSerializer):
     vehicle                 = VehicleOnlyFieldsSerializer(required=False)
     property                = PropertyOnlyFieldsSerializer(required=False)
     def create(self, validated_data):
+        print(validated_data)
         contact_data        = validated_data.pop('contact')
         ad                  = None
         vehicle_data        = validated_data.get('vehicle', None)
         property_data       = validated_data.get('property', None)
         add_on_data         = validated_data.get('add_on', None)
+        add_on_type         = None
         if add_on_data is not None:
+            add_on_type     = AddOnType.objects.get(name=add_on_data['add_on_type'])
             validated_data.pop('add_on')
+
         if vehicle_data is not None:
             vehicle_data    = validated_data.pop('vehicle')
-            ad              = Vehicle.objects.create(**validated_data, **vehicle_data)
-            ad              = Ad.objects.get(uuid=ad.uuid)
+            vehicle_ad              = Vehicle.objects.create(**validated_data, **vehicle_data)
+            ad              = Ad.objects.get(uuid=vehicle_ad.uuid)
         elif property_data is not None:
             property_data   = validated_data.pop('property')
-            ad              = Property.objects.create(**validated_data, **property_data)
-            ad              = Ad.objects.get(uuid=ad.uuid)
+            property_ad              = Property.objects.create(**validated_data, **property_data)
+            ad              = Ad.objects.get(uuid=property_ad.uuid)
         else:
             ad              = Ad.objects.create(**validated_data)
         single_contact = contact_data[0]
-        if single_contact:
-            address         = Address.objects.create(**single_contact['address'])
-            phone_number    = PhoneNumber.objects.create(**single_contact['phone_number'])
-            website         = Website.objects.create(**single_contact['website'])
+        if single_contact is not None:
+            address         = Address.objects.create(**single_contact['address']) if \
+                single_contact.get('address') is not None else None
+            phone_number    = PhoneNumber.objects.create(**single_contact['phone_number']) if \
+                single_contact.get('phone_number') is not None else None
+            website         = Website.objects.create(**single_contact['website']) if \
+                single_contact.get('website') is not None else None
             ad.contact.create(address=address, phone_number=phone_number, website=website)
-        add_on_type         = AddOnType.objects.get(name=add_on_data['add_on_type'])
-        AppliedAddOn.objects.create(ad=ad, add_on_type=add_on_type)
+        if add_on_type is not None:
+            AppliedAddOn.objects.create(ad=ad, add_on_type=add_on_type)
         return ad
     class Meta:
         model = Ad
