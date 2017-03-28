@@ -41,7 +41,7 @@ class AdListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ad
-        fields = ('uuid', 'title', 'price','negotiable', 'description', 'contact_info',
+        fields = ('uuid', 'category', 'title', 'price','negotiable', 'description', 'contact_info',
                  'add_on', 'vehicle', 'property')
 
 class AdCreateSerializer(serializers.ModelSerializer):
@@ -58,13 +58,15 @@ class AdCreateSerializer(serializers.ModelSerializer):
         if vehicle_data is not None:
             vehicle_data    = validated_data.pop('vehicle')
             ad              = Vehicle.objects.create(**validated_data, **vehicle_data)
+            ad              = Ad.objects.get(uuid=ad.uuid)
         elif property_data is not None:
             property_data   = validated_data.pop('property')
             ad              = Property.objects.create(**validated_data, **property_data)
+            ad              = Ad.objects.get(uuid=ad.uuid)
         else:
             ad              = Ad.objects.create(**validated_data)
 
-        print (ad)
+        print (ad.__class__)
         single_contact_info = contact_data[0]
         print (vehicle_data)
         if single_contact_info:
