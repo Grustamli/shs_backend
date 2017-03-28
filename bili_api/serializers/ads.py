@@ -20,7 +20,6 @@ class AdListSerializer(serializers.ModelSerializer):
         super().__init__(*args, **kwargs)
         brief = self.context['request'].query_params.get('brief')
         if brief is not None and brief == 'true':
-            # Drop any fields that are not specified in the `fields` argument.
             allowed     = set(['uuid',])
             existing    = set(self.fields.keys())
             for field_name in existing - allowed:
@@ -66,9 +65,7 @@ class AdCreateSerializer(serializers.ModelSerializer):
         else:
             ad              = Ad.objects.create(**validated_data)
 
-        print (ad.__class__)
         single_contact_info = contact_data[0]
-        print (vehicle_data)
         if single_contact_info:
             address         = Address.objects.create(**single_contact_info['address'])
             phone_number    = PhoneNumber.objects.create(**single_contact_info['phone_number'])
@@ -86,6 +83,21 @@ class AdCreateSerializer(serializers.ModelSerializer):
 class AdDetailSerializer(serializers.ModelSerializer):
     contact_info            = ContactInfoSerializer(many=True)
     add_on                  = serializers.CharField(source='add_on.add_on_type')
+    vehicle                 = VehicleOnlyFieldsSerializer()
+    property                = PropertyOnlyFieldsSerializer()
+    def to_representation(self, obj):
+        ret = super().to_representation(obj)
+        vehicle_data    = ret.get('vehicle', None)
+        property_data   = ret.get('property', None)
+        add_on          = ret.get('add_on', None)
+        if vehicle_data is None:
+            ret.pop('vehicle')
+        if property_data is None:
+            ret.pop('property')
+        if add_on is None:
+            ret.pop('add_on')
+        return ret
     class Meta:
         model = Ad
-        fields = ('title', 'description', 'category', 'price', 'negotiable', 'contact_info', 'add_on', 'images')
+        fields = ('title', 'description', 'category', 'price', 'negotiable',
+            'contact_info', 'add_on', 'images', 'vehicle', 'property')
