@@ -20,8 +20,8 @@ class AddressOnlyContactSerializer(serializers.ModelSerializer):
 
 class ContactSerializer(serializers.ModelSerializer):
     address         = AddressSerializer()
-    phone_number    = serializers.CharField(source='phone_number.number')
-    website         = serializers.CharField(source='website.url')
+    phone_number    = serializers.CharField(source='phone_number.number', required=False)
+    website         = serializers.CharField(source='website.url', required=False)
     class Meta:
         model = Contact
         fields = ('address','phone_number', 'website')

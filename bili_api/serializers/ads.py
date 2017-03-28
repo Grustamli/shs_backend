@@ -51,6 +51,7 @@ class AdCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         print(validated_data)
         contact_data        = validated_data.pop('contact')
+        single_contact = contact_data[0]
         ad                  = None
         vehicle_data        = validated_data.get('vehicle', None)
         property_data       = validated_data.get('property', None)
@@ -70,7 +71,6 @@ class AdCreateSerializer(serializers.ModelSerializer):
             ad              = Ad.objects.get(uuid=property_ad.uuid)
         else:
             ad              = Ad.objects.create(**validated_data)
-        single_contact = contact_data[0]
         if single_contact is not None:
             address         = Address.objects.create(**single_contact['address']) if \
                 single_contact.get('address') is not None else None
