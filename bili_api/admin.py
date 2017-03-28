@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models.ads import AdImage, Ad, Favourite
 from .models.ad_extensions import Property
 from .models.categories import Category
-from .models.add_on import AddOnType
+from .models.add_on import *
 from .models.property_data import PaymentPeriod
 from .models.vehicle_data import *
 from .models.contact_info import *
@@ -32,6 +32,7 @@ admin.site.register([
     Property,
     Category,
     AddOnType,
+    AppliedAddOn,
     PaymentPeriod,
     VehicleMake,
     VehicleModel,

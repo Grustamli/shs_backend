@@ -29,5 +29,5 @@ class Vehicle(Ad):
     fuel            = models.ForeignKey(VehicleFuel, null=True)
     transmission    = models.ForeignKey(VehicleTransmission, null=True)
     mileage         = models.IntegerField(validators=[MaxValueValidator(9999999999)], null=True, blank=True)
-    year            = models.IntegerField(choices=YEAR_CHOICES, default=datetime.datetime.now().year, null=True, blank=True)
+    year            = models.IntegerField(choices=YEAR_CHOICES, null=True, blank=True)
     engine_size     = models.DecimalField(max_digits=10, decimal_places=3, blank=True, null=True)

@@ -5,7 +5,7 @@ from datetime import timedelta
 
 
 class AddOnType(models.Model):
-    name            = models.CharField(max_length=15)
+    name            = models.CharField(primary_key=True, max_length=15)
     lang_az         = models.CharField(max_length=30, null=True, blank=True)
     lang_en         = models.CharField(max_length=30, null=True, blank=True)
     lang_ru         = models.CharField(max_length=30, null=True, blank=True)
@@ -14,16 +14,17 @@ class AddOnType(models.Model):
     desc_en         = models.TextField(null=True, blank=True)
     desc_tr         = models.TextField(null=True, blank=True)
     desc_ru         = models.TextField(null=True, blank=True)
-    expiry_interval = models.IntegerField()
+    expiry_days     = models.IntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return self.name
 
 
 class AppliedAddOn(models.Model):
-    ad              = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name="add_on")
-    add_on          = models.ForeignKey(AddOnType, on_delete=models.CASCADE, related_name="ads"),
+    ad              = models.OneToOneField(Ad, on_delete=models.CASCADE, related_name="add_on")
+    add_on_type     = models.ForeignKey(AddOnType, on_delete=models.CASCADE)
     add_date        = models.DateTimeField('addon add date', auto_now_add=True)
 
-    def valid(self):
-        ep = self.add_on.expiry_interval
-        ep_sec = timedelta(days=ep).total_seconds()
-        print(self.add_date)
+
+    def __str__(self):
+        return self.add_on_type.name

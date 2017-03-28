@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from ..models.add_on import AddOnType
+from ..models.add_on import *
 
 class AddOnListSerializer(ModelSerializer):
     def __init__(self, *args, **kwargs):
@@ -14,3 +14,9 @@ class AddOnListSerializer(ModelSerializer):
     class Meta:
         model = AddOnType
         fields = "__all__"
+
+
+class AppliedAddOnSerializer(ModelSerializer):
+    class Meta:
+        model = AppliedAddOn
+        fields = '__all__'

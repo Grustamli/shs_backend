@@ -1,15 +1,27 @@
-from rest_framework.serializers import RelatedField
+from rest_framework import serializers
 from ..models.contact_info import *
 from ..models.ads import Ad
 from ..models.user import Profile
 
-class AddressRelatedField(RelatedField):
 
-    def to_representation(self, value):
-        print('value: ', str(value.__class__))
 
-        # if isinstance(value.content_type, Profile):
-        #     return 'Profile ' + value.city
-        # elif isinstance(value.content_type, Ad):
-        #     return 'Ad ' + value.city
-        raise Exception('Unexpected type of address object')
+
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model       = Address
+        exclude     = ('id',)
+
+
+class AddressOnlyContactSerializer(serializers.ModelSerializer):
+    address         = AddressSerializer()
+    class Meta:
+        model       = ContactInfo
+        fields      = ('address',)
+
+class ContactInfoSerializer(serializers.ModelSerializer):
+    address         = AddressSerializer()
+    phone_number    = serializers.CharField(source='phone_number.number')
+    website         = serializers.CharField(source='website.url')
+    class Meta:
+        model = ContactInfo
+        fields = ('address','phone_number', 'website')

@@ -3,15 +3,13 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.fields import GenericRelation
-from .geolocation import City
-from .contact_info import *
+from .contact_info import ContactInfo
 
 
 class Profile(models.Model):
     owner           = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number    = GenericRelation(PhoneNumber)
-    address         = GenericRelation(Address)
-    website         = GenericRelation(Website)
+    contact_info    = GenericRelation(ContactInfo)
+
     def profile_pic_directory_path(instance, filename):
         user = instance.owner.username
         return 'profile_pics/{0}/{1}'.format(user,filename)

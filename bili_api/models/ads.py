@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.fields import GenericRelation
-from .contact_info import *
+from .contact_info import ContactInfo
 from django.db.models.signals import post_save
 
 from .geolocation import City
@@ -19,13 +19,12 @@ class Ad(models.Model):
     category        = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='ads')
     title           = models.CharField(max_length=250)
     description     = models.TextField(null=True, blank=True)
-    price           = models.IntegerField()
+    price           = models.IntegerField(null=True, blank=True)
     negotiable      = models.BooleanField(default=False)
     published       = models.DateTimeField('publish date', auto_now_add=True)
     active_from     = models.DateField(null=True, blank=True)
-    address         = GenericRelation(Address)
-    phone_number    = GenericRelation(PhoneNumber)
-    website         = GenericRelation(Website)
+    contact_info    = GenericRelation(ContactInfo)
+
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         if not self.price:

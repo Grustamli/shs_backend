@@ -1,0 +1,12 @@
+- model: bili_api.addontype
+  pk: basic
+  fields:
+    lang_en: Basic
+    lang_az: Sade
+
+- model: bili_api.addontype
+  pk: exclusive
+  fields:
+    lang_en: Exclusive
+    lang_az: Ekskluziv
+    expiry_days: 30
