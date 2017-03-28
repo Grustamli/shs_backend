@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.contact_info import *
+from ..models.contact import *
 from ..models.ads import Ad
 from ..models.user import Profile
 
@@ -15,13 +15,13 @@ class AddressSerializer(serializers.ModelSerializer):
 class AddressOnlyContactSerializer(serializers.ModelSerializer):
     address         = AddressSerializer()
     class Meta:
-        model       = ContactInfo
+        model       = Contact
         fields      = ('address',)
 
-class ContactInfoSerializer(serializers.ModelSerializer):
+class ContactSerializer(serializers.ModelSerializer):
     address         = AddressSerializer()
     phone_number    = serializers.CharField(source='phone_number.number')
     website         = serializers.CharField(source='website.url')
     class Meta:
-        model = ContactInfo
+        model = Contact
         fields = ('address','phone_number', 'website')

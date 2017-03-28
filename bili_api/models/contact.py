@@ -19,7 +19,7 @@ class Website(models.Model):
         return self.url
 
 
-class ContactInfo(models.Model):
+class Contact(models.Model):
     address         = models.OneToOneField(Address, on_delete=models.CASCADE)
     phone_number    = models.OneToOneField(PhoneNumber, on_delete=models.CASCADE, null=True, blank=True)
     website         = models.OneToOneField(Website, on_delete=models.CASCADE, null=True, blank=True)

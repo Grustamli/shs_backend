@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.fields import GenericRelation
-from .contact_info import ContactInfo
+from .contact import Contact
 
 
 class Profile(models.Model):
     owner           = models.OneToOneField(User, on_delete=models.CASCADE)
-    contact_info    = GenericRelation(ContactInfo)
+    contact         = GenericRelation(Contact)
 
     def profile_pic_directory_path(instance, filename):
         user = instance.owner.username

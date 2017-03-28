@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from ..models.ad_extensions import (Vehicle, Property)
-from .contact_info import *
+from .contact import *
 
 class VehicleAdListCreateSerializer(serializers.ModelSerializer):
     add_on              = serializers.CharField(source='add_on.add_on_type')

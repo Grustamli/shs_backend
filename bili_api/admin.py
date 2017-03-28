@@ -7,7 +7,7 @@ from .models.categories import Category
 from .models.add_on import *
 from .models.property_data import PaymentPeriod
 from .models.vehicle_data import *
-from .models.contact_info import *
+from .models.contact import *
 from .models.user import *
 
 

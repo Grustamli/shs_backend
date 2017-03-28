@@ -2,10 +2,10 @@ from rest_framework import serializers
 from .ad_extensions import (VehicleOnlyFieldsSerializer, PropertyOnlyFieldsSerializer)
 from ..models.ads import Ad
 from ..models.ad_extensions import *
-from ..models.contact_info import *
+from ..models.contact import *
 from ..models.add_on import *
 from ..models.geolocation import City
-from .contact_info import *
+from .contact import *
 from .add_on import AppliedAddOnSerializer
 from .ad_extensions import VehicleOnlyFieldsSerializer
 
@@ -44,7 +44,7 @@ class AdListSerializer(serializers.ModelSerializer):
                  'add_on', 'vehicle', 'property')
 
 class AdCreateSerializer(serializers.ModelSerializer):
-    contact            = ContactInfoSerializer(many=True)
+    contact            = ContactSerializer(many=True)
     add_on                  = serializers.CharField(source='add_on.add_on_type')
     vehicle                 = VehicleOnlyFieldsSerializer(required=False)
     property                = PropertyOnlyFieldsSerializer(required=False)
@@ -70,7 +70,7 @@ class AdCreateSerializer(serializers.ModelSerializer):
             address         = Address.objects.create(**single_contact['address'])
             phone_number    = PhoneNumber.objects.create(**single_contact['phone_number'])
             website         = Website.objects.create(**single_contact['website'])
-            ad.contact_info.create(address=address, phone_number=phone_number, website=website)
+            ad.contact.create(address=address, phone_number=phone_number, website=website)
         add_on_type         = AddOnType.objects.get(name=add_on_data['add_on_type'])
         AppliedAddOn.objects.create(ad=ad, add_on_type=add_on_type)
         return ad
@@ -81,7 +81,7 @@ class AdCreateSerializer(serializers.ModelSerializer):
 
 # TODO: Implement AdUpdate
 class AdDetailSerializer(serializers.ModelSerializer):
-    contact            = ContactInfoSerializer(many=True)
+    contact            = ContactSerializer(many=True)
     add_on                  = serializers.CharField(source='add_on.add_on_type')
     vehicle                 = VehicleOnlyFieldsSerializer()
     property                = PropertyOnlyFieldsSerializer()
