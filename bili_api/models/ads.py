@@ -39,12 +39,19 @@ class Ad(models.Model):
 
 
 class AdImage(models.Model):
+    uuid            = models.CharField(primary_key=True, editable=False, max_length=100)
     ad              = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images')
     def user_directory_path(instance, filename):
         ad = instance.ad.uuid
-        return 'ad-images/{0}/{1}'.format(ad,filename)
+        return 'ad-images/{0}/{1}'.format(ad, instance.pk)
 
     image           = models.ImageField(upload_to=user_directory_path)
+
+    def save(self, *args, **kwargs):
+        self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
+        super().save(*args, **kwargs)
+
+
     def __str__(self):
         return self.ad.title
 

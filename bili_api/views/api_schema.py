@@ -39,14 +39,14 @@ def favorites_schema(request, format=None):
         urls[username]      = reverse('user_favorites', kwargs={'username': username}, request=request, format=format)
     return Response(urls)
 
-@api_view(['GET'])
-def ad_images(request, format=None):
-    ads                     = Ad.objects.all()
-    urls                    = {}
-    for ad in ads:
-        ad_id               = ad.uuid
-        urls[ad_id]         = reverse('ad_image_list', kwargs={'ad_uuid': ad_id}, request=request, format=format)
-    return Response(urls)
+# @api_view(['GET'])
+# def ad_images(request, format=None):
+#     ads                     = Ad.objects.all()
+#     urls                    = {}
+#     for ad in ads:
+#         ad_id               = ad.uuid
+#         urls[ad_id]         = reverse('ad_image_list', kwargs={'ad_uuid': ad_id}, request=request, format=format)
+#     return Response(urls)
 
 
 @api_view(['GET'])

@@ -4,4 +4,9 @@ from ..models.ads import AdImage
 class AdImageListSerializer(ModelSerializer):
     class Meta:
         model = AdImage
-        fields = ('image',)
+        fields = '__all__'
+        extra_kwargs = {
+            'ad':{
+                'write_only' : True
+            }
+        }

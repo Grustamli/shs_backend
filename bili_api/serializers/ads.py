@@ -8,11 +8,11 @@ from ..models.geolocation import City
 from .contact import *
 from .add_on import AppliedAddOnSerializer
 from .ad_extensions import VehicleOnlyFieldsSerializer
-
+from .ad_image import AdImageListSerializer
 
 class AdListSerializer(serializers.ModelSerializer):
     add_on              = serializers.CharField(source='add_on.add_on_type')
-    contact        = AddressOnlyContactSerializer(many=True)
+    contact             = AddressOnlyContactSerializer(many=True)
     vehicle             = VehicleOnlyFieldsSerializer()
     property            = PropertyOnlyFieldsSerializer()
 
@@ -89,10 +89,11 @@ class AdCreateSerializer(serializers.ModelSerializer):
 
 # TODO: Implement AdUpdate
 class AdDetailSerializer(serializers.ModelSerializer):
-    contact            = ContactSerializer(many=True)
-    add_on                  = serializers.CharField(source='add_on.add_on_type', required=False)
-    vehicle                 = VehicleOnlyFieldsSerializer()
-    property                = PropertyOnlyFieldsSerializer()
+    contact             = ContactSerializer(many=True)
+    add_on              = serializers.CharField(source='add_on.add_on_type', required=False)
+    vehicle             = VehicleOnlyFieldsSerializer()
+    property            = PropertyOnlyFieldsSerializer()
+    images              = AdImageListSerializer(many=True)
     def to_representation(self, obj):
         ret = super().to_representation(obj)
         vehicle_data    = ret.get('vehicle', None)

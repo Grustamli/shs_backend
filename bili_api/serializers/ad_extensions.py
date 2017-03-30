@@ -9,7 +9,7 @@ class VehicleAdListCreateSerializer(serializers.ModelSerializer):
         model = Vehicle
         fields = ('title', 'description', 'category', 'price', 'negotiable', 'contact', 'add_on',
                 'make', 'fuel', 'transmission', 'mileage', 'year', 'engine_size'
-            )
+                )
 
 
 
