@@ -44,10 +44,10 @@ class AdListSerializer(serializers.ModelSerializer):
                  'add_on', 'vehicle', 'property')
 
 class AdCreateSerializer(serializers.ModelSerializer):
-    contact            = ContactSerializer(many=True)
-    add_on                  = serializers.CharField(source='add_on.add_on_type', required=False)
-    vehicle                 = VehicleOnlyFieldsSerializer(required=False)
-    property                = PropertyOnlyFieldsSerializer(required=False)
+    contact            = ContactSerializer(many=True, write_only=True)
+    add_on                  = serializers.CharField(source='add_on.add_on_type', required=False, write_only=True)
+    vehicle                 = VehicleOnlyFieldsSerializer(required=False, write_only=True)
+    property                = PropertyOnlyFieldsSerializer(required=False, write_only=True)
     def create(self, validated_data):
         print(validated_data)
         contact_data        = validated_data.pop('contact')
@@ -84,7 +84,7 @@ class AdCreateSerializer(serializers.ModelSerializer):
         return ad
     class Meta:
         model = Ad
-        fields = ('title', 'description', 'category', 'price', 'negotiable', 'contact', 'add_on', 'vehicle', 'property')
+        fields = ('uuid','title', 'description', 'category', 'price', 'negotiable', 'contact', 'add_on', 'vehicle', 'property')
 
 
 # TODO: Implement AdUpdate
