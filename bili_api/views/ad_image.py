@@ -1,7 +1,9 @@
 from rest_framework.generics import (ListCreateAPIView, RetrieveDestroyAPIView, CreateAPIView)
 from rest_framework.response import Response
+from rest_framework.parsers import (MultiPartParser, JSONParser)
 from ..models.ads import (Ad, AdImage)
 from ..serializers.ad_image import (AdImageListSerializer,)
+
 
 
 # class AdImageListAPIView(ListAPIView):
@@ -14,6 +16,7 @@ from ..serializers.ad_image import (AdImageListSerializer,)
 #         return queryset
 
 class AdImageListCreateAPIView(ListCreateAPIView):
+    parser_classes = (MultiPartParser, JSONParser)
     serializer_class = AdImageListSerializer
     queryset = AdImage.objects.all()
 
