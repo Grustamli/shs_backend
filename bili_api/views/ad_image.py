@@ -16,7 +16,7 @@ from ..serializers.ad_image import (AdImageListSerializer,)
 #         return queryset
 
 class AdImageListCreateAPIView(ListCreateAPIView):
-    parser_classes = (MultiPartParser, FormParser, JSONParser)
+    parser_classes = (MultiPartParser, FormParser)
     serializer_class = AdImageListSerializer
     queryset = AdImage.objects.all()
 
