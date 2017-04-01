@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.fields import GenericRelation
 from .contact import Contact
 from django.db.models.signals import post_save
+from os.path import splitext
 
 from .geolocation import City
 # from .user import (UserAddress,)
@@ -42,8 +43,9 @@ class AdImage(models.Model):
     uuid            = models.CharField(primary_key=True, editable=False, max_length=100)
     ad              = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images')
     def user_directory_path(instance, filename):
+        filename, file_extension = splitext(filename)
         ad = instance.ad.uuid
-        return 'ad-images/{0}/{1}'.format(ad, instance.pk)
+        return 'ad-images/{0}/{1}{2}'.format(ad, instance.pk, file_extension)
 
     image           = models.ImageField(upload_to=user_directory_path)
 
