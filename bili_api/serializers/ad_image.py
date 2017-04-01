@@ -1,10 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from ..models.ads import AdImage
 
-class AdImageListSerializer(ModelSerializer):
-    def create(self, validated_data, *args, **kwargs):
-        print(validated_data)
-        
+class AdImageListSerializer(ModelSerializer):        
     class Meta:
         model = AdImage
         fields = '__all__'
