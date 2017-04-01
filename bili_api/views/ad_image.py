@@ -16,9 +16,11 @@ from ..serializers.ad_image import (AdImageListSerializer,)
 #         return queryset
 
 class AdImageListCreateAPIView(ListCreateAPIView):
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (FormParser,MultiPartParser)
     serializer_class = AdImageListSerializer
     queryset = AdImage.objects.all()
+    # def create(self, request, *args, **kwargs):
+    #     print(request.data)
 
 class AdImageDetailApiView(RetrieveDestroyAPIView):
     serializer_class = AdImageListSerializer
