@@ -45,7 +45,7 @@ class AdImage(models.Model):
     def user_directory_path(instance, filename):
         filename, file_extension = splitext(filename)
         ad = instance.ad.uuid
-        return 'ad-images/{0}/{1}{2}'.format(ad, instance.pk, file_extension)
+        return 'post-images/{0}/{1}{2}'.format(ad, instance.pk, file_extension)
 
     image           = models.ImageField(upload_to=user_directory_path)
 
