@@ -79,12 +79,6 @@ class Message(models.Model):
     content         = models.TextField()
 
 
-
-
-
-
-
-
 # @receiver(post_save, sender=Ad)
 # def my_callback(sender, instance, *args, **kwargs):
 #     instance.uuid = instance.uuid.strip("=")
