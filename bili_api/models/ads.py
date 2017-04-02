@@ -26,6 +26,12 @@ class Ad(models.Model):
     active_from     = models.DateField(null=True, blank=True)
     contact         = GenericRelation(Contact)
 
+    def post_image_directory_path(instance, filename):
+        filename, file_extension = splitext(filename)
+        return 'post-images/{0}/{1}_thumb{2}'.format(instance.uuid, filename, file_extension)
+
+    thumbnail       = models.ImageField(upload_to=post_image_directory_path)
+
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         if not self.price:
@@ -42,12 +48,12 @@ class Ad(models.Model):
 class AdImage(models.Model):
     uuid            = models.CharField(primary_key=True, editable=False, max_length=100)
     ad              = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images')
-    def user_directory_path(instance, filename):
+    def post_image_directory_path(instance, filename):
         filename, file_extension = splitext(filename)
         ad = instance.ad.uuid
         return 'post-images/{0}/{1}{2}'.format(ad, instance.pk, file_extension)
 
-    image           = models.ImageField(upload_to=user_directory_path)
+    image           = models.ImageField(upload_to=post_image_directory_path)
 
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
