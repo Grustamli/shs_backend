@@ -14,6 +14,19 @@ import datetime
 from  base64 import urlsafe_b64encode
 from uuid import uuid4
 
+
+def post_image_directory_path(instance, filename):
+    filename, file_extension = splitext(filename)
+    ad = instance.ad.uuid
+    # return 'post-images/{0}/{1}{2}'.format(ad, instance.pk, file_extension)
+    return f'post-images/{ad}/{instance.pk}{file_extension}'
+
+
+def thumbnails_directory_path(instance, filename):
+    filename, file_extension = splitext(filename)
+    return 'post-thumbs/s300/thumb_{1}{2}'.format(instance.ad.uuid, file_extension)
+
+
 class Ad(models.Model):
     uuid            = models.CharField(primary_key=True, editable=False, max_length=100)
     owner           = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ads')
@@ -25,51 +38,42 @@ class Ad(models.Model):
     published       = models.DateTimeField('publish date', auto_now_add=True)
     active_from     = models.DateField(null=True, blank=True)
     contact         = GenericRelation(Contact)
-
-    def post_image_directory_path(instance, filename):
-        filename, file_extension = splitext(filename)
-        return 'post-images/{0}/{1}_thumb{2}'.format(instance.uuid, filename, file_extension)
-
-    thumbnail       = models.ImageField(upload_to=post_image_directory_path)
-
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         if not self.price:
             self.negotiable = True
         super().save(*args, **kwargs)
-
-
     def __str__(self):
         return self.title
-
-
 
 
 class AdImage(models.Model):
     uuid            = models.CharField(primary_key=True, editable=False, max_length=100)
     ad              = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='images')
-    def post_image_directory_path(instance, filename):
-        filename, file_extension = splitext(filename)
-        ad = instance.ad.uuid
-        return 'post-images/{0}/{1}{2}'.format(ad, instance.pk, file_extension)
-
     image           = models.ImageField(upload_to=post_image_directory_path)
-
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         super().save(*args, **kwargs)
-
-
     def __str__(self):
         return self.ad.title
+
+
+class AdThumbnail(models.Model):
+    ad              = models.OneToOneField(Ad, on_delete=models.CASCADE, related_name='thumbnail')
+    image_s300      = models.ImageField(upload_to=thumbnails_directory_path)
+    def save(self, *args, **kwargs):
+        self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
+        super().save(*args, **kwargs)
+    def __str__(self):
+        return self.ad.title
+
+
 
 class Favourite(models.Model):
     owner           = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favourites')
     ad              = models.ForeignKey(Ad, on_delete=models.CASCADE)
-
     class Meta:
         unique_together = ('owner', 'ad')
-
 
 
 class Message(models.Model):
