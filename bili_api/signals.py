@@ -23,7 +23,7 @@ def autoGeneratePrivacySetting(sender, instance, created, **kwargs):
 @receiver(post_save, sender=AdImage, weak=False, dispatch_uid="create_privacy_settings_item")
 def generateThumbnailForAd(sender, instance, created, **kwargs):
     if created:
-        if instance.ad.thumbnail is not None:
+        if instance.ad.thumbnail is None:
             size = (300,300)
             img = Image.open(instance.image)
             instance.ad.thumbnail = img.thumbnail(size, Image.ANTIALIAS)
