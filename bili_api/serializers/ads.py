@@ -15,6 +15,7 @@ class AdListSerializer(serializers.ModelSerializer):
     contact             = AddressOnlyContactSerializer(many=True)
     vehicle             = VehicleOnlyFieldsSerializer()
     property            = PropertyOnlyFieldsSerializer()
+    thumbnail           = serializers.ImageField(source='thumbnail.image_s300')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -18,13 +18,10 @@ from uuid import uuid4
 def post_image_directory_path(instance, filename):
     filename, file_extension = splitext(filename)
     ad = instance.ad.uuid
-    # return 'post-images/{0}/{1}{2}'.format(ad, instance.pk, file_extension)
     return f'post-images/{ad}/{instance.pk}{file_extension}'
 
-
 def thumbnails_directory_path(instance, filename):
-    filename, file_extension = splitext(filename)
-    return 'post-thumbs/s300/thumb_{1}{2}'.format(instance.ad.uuid, file_extension)
+    return f'post-thumbs/s300/{filename}'
 
 
 class Ad(models.Model):
@@ -44,7 +41,7 @@ class Ad(models.Model):
             self.negotiable = True
         super().save(*args, **kwargs)
     def __str__(self):
-        return self.title
+        return self.uuid
 
 
 class AdImage(models.Model):
@@ -55,17 +52,17 @@ class AdImage(models.Model):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         super().save(*args, **kwargs)
     def __str__(self):
-        return self.ad.title
+        return self.uuid
 
 
-class AdThumbnail(models.Model):
-    ad              = models.OneToOneField(Ad, on_delete=models.CASCADE, related_name='thumbnail')
+class Thumbnail(models.Model):
+    ad              = models.OneToOneField(Ad, on_delete=models.CASCADE, null=True, blank=True)
     image_s300      = models.ImageField(upload_to=thumbnails_directory_path)
     def save(self, *args, **kwargs):
         self.uuid = urlsafe_b64encode(uuid4().bytes).decode().rstrip("==")
         super().save(*args, **kwargs)
     def __str__(self):
-        return self.ad.title
+        return self.ad.uuid
 
 
 
@@ -81,9 +78,3 @@ class Message(models.Model):
     receiver        = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
     sent_time       = models.DateTimeField(auto_now_add=True)
     content         = models.TextField()
-
-
-# @receiver(post_save, sender=Ad)
-# def my_callback(sender, instance, *args, **kwargs):
-#     instance.uuid = instance.uuid.strip("=")
-#     print(instance.id)
