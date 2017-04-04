@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
     'django_extensions',
-    'django_cleanup'
+    'django_cleanup',
+    'storages'
 ]
 
 MIDDLEWARE_CLASSES = [
