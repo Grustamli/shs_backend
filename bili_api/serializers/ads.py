@@ -95,6 +95,7 @@ class AdDetailSerializer(serializers.ModelSerializer):
     vehicle             = VehicleOnlyFieldsSerializer()
     property            = PropertyOnlyFieldsSerializer()
     images              = AdImageListSerializer(many=True)
+    owner               = serializers.StringRelatedField()
     def to_representation(self, obj):
         ret = super().to_representation(obj)
         vehicle_data    = ret.get('vehicle', None)
@@ -111,8 +112,3 @@ class AdDetailSerializer(serializers.ModelSerializer):
         model = Ad
         fields = ('owner', 'title', 'description', 'category', 'price', 'negotiable',
             'contact', 'add_on', 'images', 'vehicle', 'property')
-        extra_kwargs = {
-            'owner':{
-                'read_only': True
-            }
-        }
