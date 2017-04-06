@@ -109,5 +109,10 @@ class AdDetailSerializer(serializers.ModelSerializer):
         return ret
     class Meta:
         model = Ad
-        fields = ('title', 'description', 'category', 'price', 'negotiable',
+        fields = ('owner', 'title', 'description', 'category', 'price', 'negotiable',
             'contact', 'add_on', 'images', 'vehicle', 'property')
+        extra_kwargs = {
+            'owner':{
+                'read_only': True
+            }
+        }
