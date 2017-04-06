@@ -31,11 +31,11 @@ class AdListSerializer(serializers.ModelSerializer):
         vehicle_data    = ret.get('vehicle', None)
         property_data   = ret.get('property', None)
         add_on          = ret.get('add_on', None)
-        if vehicle_data is None:
+        if 'vehicle' in ret and vehicle_data is None:
             ret.pop('vehicle')
-        if property_data is None:
+        if 'property' in ret and property_data is None:
             ret.pop('property')
-        if add_on is None:
+        if 'add_on' in ret and add_on is None:
             ret.pop('add_on')
         return ret
 
@@ -88,7 +88,6 @@ class AdCreateSerializer(serializers.ModelSerializer):
         fields = ('uuid','title', 'description', 'category', 'price', 'negotiable', 'contact', 'add_on', 'vehicle', 'property')
 
 
-# TODO: Implement AdUpdate
 class AdDetailSerializer(serializers.ModelSerializer):
     contact             = ContactSerializer(many=True)
     add_on              = serializers.CharField(source='add_on.add_on_type', required=False)

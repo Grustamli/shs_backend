@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.filters import SearchFilter
 from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
+from django.contrib.auth.models import User
 
 from django.http import Http404
 from ..filters import AdFilter
@@ -16,10 +17,16 @@ from rest_framework.parsers import JSONParser
 
 
 class AdListView(ListCreateAPIView):
-    queryset = Ad.objects.all()
     filter_backends = (SearchFilter, DjangoFilterBackend)
     filter_class = AdFilter
     search_fields = ['$title', '$description']
+    def get_queryset(self):
+        queryset = Ad.objects.all()
+        username = self.request.query_params.get('user', None)
+        if username is not None:
+            user = User.objects.get(username=username)
+            queryset = queryset.filter(owner=user)
+        return queryset
     def get_serializer_class(self):
         serializer_class = AdListSerializer
         if self.request.method == 'POST':
