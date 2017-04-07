@@ -2,6 +2,7 @@ venv
 *.pyc
 staticfiles
 media
+bili/settings/development.py
 .env
 test
 test.py

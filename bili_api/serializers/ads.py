@@ -21,8 +21,9 @@ class AdListSerializer(serializers.ModelSerializer):
 
     def get_favorited(self, obj):
         request = self.context.get('request', None)
-        if request is not None and not request.user.is_anonymous:
-            return Favourite.objects.get(owner=request.user, ad=obj).exists()
+        if request is not None and not request.user.is_anonymous():
+            print('not anonymous')
+            return Favourite.objects.filter(owner=request.user, ad=obj).exists()
         return False
 
 
@@ -112,7 +113,7 @@ class AdDetailSerializer(serializers.ModelSerializer):
 
     def get_favorited(self, obj):
         request = self.context.get('request', None)
-        if request is not None and not request.user.is_anonymous:
+        if request is not None and not request.user.is_anonymous():
             return Favourite.objects.get(owner=request.user, ad=obj).exists()
         return False
     def to_representation(self, obj):
