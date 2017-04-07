@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .ad_extensions import (VehicleOnlyFieldsSerializer, PropertyOnlyFieldsSerializer)
-from ..models.ads import Ad
+from ..models.ads import (Ad, Favourite)
 from ..models.ad_extensions import *
 from ..models.contact import *
 from ..models.add_on import *
@@ -10,12 +10,21 @@ from .add_on import AppliedAddOnSerializer
 from .ad_extensions import VehicleOnlyFieldsSerializer
 from .ad_image import AdImageListSerializer
 
+
 class AdListSerializer(serializers.ModelSerializer):
     add_on              = serializers.CharField(source='add_on.add_on_type')
     contact             = AddressOnlyContactSerializer(many=True)
     vehicle             = VehicleOnlyFieldsSerializer()
     property            = PropertyOnlyFieldsSerializer()
     thumbnail           = serializers.ImageField(source='thumbnail.image_s300')
+    favorited           = serializers.SerializerMethodField()
+
+    def get_favorited(self, obj):
+        request = self.context.get('request', None)
+        if request is not None and not request.user.is_anonymous:
+            return Favourite.objects.get(owner=request.user, ad=obj).exists()
+        return False
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -26,7 +35,9 @@ class AdListSerializer(serializers.ModelSerializer):
             for field_name in existing - allowed:
                 self.fields.pop(field_name)
 
+
     def to_representation(self, obj):
+        request = self.context.get('request', None)
         ret = super().to_representation(obj)
         vehicle_data    = ret.get('vehicle', None)
         property_data   = ret.get('property', None)
@@ -37,12 +48,14 @@ class AdListSerializer(serializers.ModelSerializer):
             ret.pop('property')
         if 'add_on' in ret and add_on is None:
             ret.pop('add_on')
+        if request is None or request.user.is_anonymous():
+            ret.pop('favorited')
         return ret
 
     class Meta:
         model = Ad
         fields = ('uuid', 'category', 'title', 'price','negotiable', 'description', 'contact',
-                 'add_on', 'vehicle', 'property', 'thumbnail')
+                 'add_on', 'vehicle', 'property', 'thumbnail', 'favorited')
 
 class AdCreateSerializer(serializers.ModelSerializer):
     contact                 = ContactSerializer(many=True, write_only=True)
@@ -95,7 +108,15 @@ class AdDetailSerializer(serializers.ModelSerializer):
     property            = PropertyOnlyFieldsSerializer()
     images              = AdImageListSerializer(many=True)
     owner               = serializers.StringRelatedField()
+    favorited           = serializers.SerializerMethodField()
+
+    def get_favorited(self, obj):
+        request = self.context.get('request', None)
+        if request is not None and not request.user.is_anonymous:
+            return Favourite.objects.get(owner=request.user, ad=obj).exists()
+        return False
     def to_representation(self, obj):
+        request = self.context.get('request', None)
         ret = super().to_representation(obj)
         vehicle_data    = ret.get('vehicle', None)
         property_data   = ret.get('property', None)
@@ -106,8 +127,10 @@ class AdDetailSerializer(serializers.ModelSerializer):
             ret.pop('property')
         if add_on is None:
             ret.pop('add_on')
+        if request is None or request.user.is_anonymous():
+            ret.pop('favorited')
         return ret
     class Meta:
         model = Ad
         fields = ('owner', 'title', 'description', 'category', 'price', 'negotiable',
-            'contact', 'add_on', 'images', 'vehicle', 'property')
+            'contact', 'add_on', 'images', 'vehicle', 'property', 'favorited')

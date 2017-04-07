@@ -20,6 +20,12 @@ class AdListView(ListCreateAPIView):
     filter_backends = (SearchFilter, DjangoFilterBackend)
     filter_class = AdFilter
     search_fields = ['$title', '$description']
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer_class()(queryset, many=True, context={'request':request})
+        return Response(serializer.data)
+
+
     def get_queryset(self):
         queryset = Ad.objects.all()
         username = self.request.query_params.get('user', None)
@@ -41,6 +47,11 @@ class AdListView(ListCreateAPIView):
 class AdDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Ad.objects.all()
     serializer_class = AdDetailSerializer
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer_class()(queryset, many=True, context={'request':request})
+        return Response(serializer.data)
 
 # class AdListView(APIView):
 #     def get(self, request, format=None):
