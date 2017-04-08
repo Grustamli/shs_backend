@@ -45,7 +45,7 @@ class AdListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
         fields = ('uuid', 'category', 'title', 'price','negotiable', 'description', 'contact',
-                 'add_on', 'vehicle', 'property', 'thumbnail', 'favorited')
+                 'add_on', 'vehicle', 'property', 'thumbnail')
 
 class AdCreateSerializer(serializers.ModelSerializer):
     contact                 = ContactSerializer(many=True, write_only=True)
