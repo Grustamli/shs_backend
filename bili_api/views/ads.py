@@ -45,7 +45,7 @@ class AdListView(ListCreateAPIView):
 
 
 class AdDetailView(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly,)
     queryset = Ad.objects.all()
     serializer_class = AdDetailSerializer
 

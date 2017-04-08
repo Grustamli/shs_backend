@@ -26,7 +26,6 @@ urlpatterns = [
     url(r'^favorites/(?P<username>[\w-]+)/(?P<ad_uuid>[\w-]+)$', UserFavoriteDetailView.as_view(), name= "favorites_detail"),
     url(r'^post-images$', AdImageListCreateAPIView.as_view() , name='ad_images'),
     url(r'^post-images/(?P<pk>[\w-]+)$', AdImageDetailApiView.as_view(), name='ad_image_detail'),
-    # url(r'^ad-images/(?P<ad_uuid>[\w-]+)/(?P<pk>[0-9]+)$', AdImageDetailApiView.as_view(), name='ad_image_detail'),
     url(r'^add-ons$', AddOnListView.as_view(), name = "add_ons"),
     url(r'^search-alerts$', search_alert_schema, name='search_alerts'),
     url(r'^search-alerts/(?P<username>[\w-]+)$', SearchAlertListView.as_view(), name="user_search_alerts"),
