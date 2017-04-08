@@ -30,9 +30,9 @@ class UserFavoriteDetailView(RetrieveDestroyAPIView):
     serializer_class = UserFavoriteListSerializer
     def get_object(self):
         username = self.kwargs['username']
-        fav_id = self.kwargs['pk']
+        ad = self.kwargs['ad_uuid']
         fav_queryset = Favourite.objects.filter(owner__username=username)
         try:
-            return fav_queryset.get(id=fav_id)
+            return fav_queryset.get(ad=ad)
         except Favourite.DoesNotExist:
             raise NotFound
