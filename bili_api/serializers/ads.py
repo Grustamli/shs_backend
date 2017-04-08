@@ -17,15 +17,6 @@ class AdListSerializer(serializers.ModelSerializer):
     vehicle             = VehicleOnlyFieldsSerializer()
     property            = PropertyOnlyFieldsSerializer()
     thumbnail           = serializers.ImageField(source='thumbnail.image_s300')
-    favorited           = serializers.SerializerMethodField()
-
-    def get_favorited(self, obj):
-        request = self.context.get('request', None)
-        if request is not None and not request.user.is_anonymous():
-            print('not anonymous')
-            return Favourite.objects.filter(owner=request.user, ad=obj).exists()
-        return False
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -49,8 +40,6 @@ class AdListSerializer(serializers.ModelSerializer):
             ret.pop('property')
         if 'add_on' in ret and add_on is None:
             ret.pop('add_on')
-        if 'favorited' in ret and (request is None or request.user.is_anonymous()):
-            ret.pop('favorited')
         return ret
 
     class Meta:
@@ -114,7 +103,7 @@ class AdDetailSerializer(serializers.ModelSerializer):
     def get_favorited(self, obj):
         request = self.context.get('request', None)
         if request is not None and not request.user.is_anonymous():
-            return Favourite.objects.get(owner=request.user, ad=obj).exists()
+            return Favourite.objects.filter(owner=request.user, ad=obj).exists()
         return False
     def to_representation(self, obj):
         request = self.context.get('request', None)
