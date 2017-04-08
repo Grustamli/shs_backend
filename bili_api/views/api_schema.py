@@ -2,9 +2,11 @@ from rest_framework.decorators import (api_view, permission_classes)
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAdminUser
 from ..models.ads import Ad
 
 @api_view(['GET'])
+@permission_classes([IsAdminUser,])
 def api_root(request, format=None):
     return Response({
         'Posts'             :reverse('posts_list', request=request, format=format),
@@ -20,6 +22,7 @@ def api_root(request, format=None):
     })
 
 @api_view(['GET'])
+@permission_classes([IsAdminUser,])
 def vehicle_props_schema(request, format=None):
     return Response({
         'Make'              :reverse('vehicle_prop', kwargs={'feature': 'make'}, request=request, format=format),
@@ -31,6 +34,7 @@ def vehicle_props_schema(request, format=None):
 
 
 @api_view(['GET'])
+@permission_classes([IsAdminUser,])
 def favorites_schema(request, format=None):
     users                   = User.objects.all()
     urls                    = {}
@@ -50,6 +54,7 @@ def favorites_schema(request, format=None):
 
 
 @api_view(['GET'])
+@permission_classes([IsAdminUser,])
 def search_alert_schema(request, format=None):
     users                   = User.objects.all()
     urls                    = {}

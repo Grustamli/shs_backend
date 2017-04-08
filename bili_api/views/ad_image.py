@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import (MultiPartParser, JSONParser, FormParser)
 from ..models.ads import (Ad, AdImage)
 from ..serializers.ad_image import (AdImageListSerializer,)
-
+from ..permissions import IsOwnAdImageOrReadOnly
 
 
 # class AdImageListAPIView(ListAPIView):
@@ -21,5 +21,6 @@ class AdImageListCreateAPIView(ListCreateAPIView):
     queryset = AdImage.objects.all()
 
 class AdImageDetailApiView(RetrieveDestroyAPIView):
+    permission_classes = (IsOwnAdImageOrReadOnly,)
     serializer_class = AdImageListSerializer
     queryset = AdImage.objects.all()

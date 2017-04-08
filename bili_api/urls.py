@@ -8,17 +8,16 @@ from .views.vehicle_data            import VehiclePropListView
 from .views.user_favorites          import (UserFavoriteListView, UserFavoriteDetailView)
 from .views.add_on                  import AddOnListView
 from .views.ad_image                import *
-from .views.register                import RegisterListView
+from .views.register                import RegisterAPIView
 from .views.search_alert            import *
 from .views.verify_username         import VerifyUsername
-from .views.ad_extensions           import *
 from .views.user_posts              import UserPostsListView
 from .views.geolocation             import CityListView
 from .views.profile                 import ProfileListCreateAPIView
 
 urlpatterns = [
     url(r'^$', api_root),
-    url(r'^register$', RegisterListView.as_view(), name='register'),
+    url(r'^register$', RegisterAPIView.as_view(), name='register'),
     url(r'^vehicle-props$', vehicle_props_schema, name='vehicle_props'),
     url(r'^favorites$', favorites_schema, name='favorites'),
     url(r'^posts$', AdListView.as_view(), name='posts_list'),
@@ -33,8 +32,6 @@ urlpatterns = [
     url(r'^search-alerts/(?P<username>[\w-]+)$', SearchAlertListView.as_view(), name="user_search_alerts"),
     url(r'^search-alerts/(?P<username>[\w-]+)/(?P<pk>[0-9]+)$', SearchAlertDetailView.as_view(), name="user_search_alerts_detail"),
     url(r'^verify-username', VerifyUsername.as_view(), name='verify_username'),
-    url(r'^vehicle-posts', VehicleAdListCreateView.as_view(), name='vehicle_ads'),
-    url(r'^property-posts', PropertyAdListCreateView.as_view(), name='property_ads'),
     url(r'^user-posts/(?P<username>[\w-]+)$', UserPostsListView.as_view(), name='user-posts'),
     url(r'^profiles', ProfileListCreateAPIView.as_view(), name='profile_list')
 ]

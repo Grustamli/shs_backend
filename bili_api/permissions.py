@@ -10,20 +10,19 @@ class IsOwnProfileOrReadOnly(permissions.BasePermission):
         return obj.username == request.user.username
 
 
+class IsOwnAdImageOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.ad.owner == request.user
+
+
 class IsOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return obj.user == request.user
-
-
-class IsAdOwnerOrReadOnly(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-
-        return obj.ad.user == request.user
+        return obj.owner == request.user
 
 
 class IsOwner(permissions.BasePermission):

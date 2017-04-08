@@ -7,7 +7,7 @@ from rest_framework.filters import SearchFilter
 from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import User
-
+from ..permissions import *
 from django.http import Http404
 from ..filters import AdFilter
 
@@ -45,6 +45,7 @@ class AdListView(ListCreateAPIView):
 
 
 class AdDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly)
     queryset = Ad.objects.all()
     serializer_class = AdDetailSerializer
 

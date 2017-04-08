@@ -49,7 +49,7 @@ class AdListSerializer(serializers.ModelSerializer):
             ret.pop('property')
         if 'add_on' in ret and add_on is None:
             ret.pop('add_on')
-        if request is None or request.user.is_anonymous():
+        if 'favorited' in ret and (request is None or request.user.is_anonymous()):
             ret.pop('favorited')
         return ret
 

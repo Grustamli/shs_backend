@@ -8,7 +8,7 @@ from rest_framework_jwt.settings import api_settings
 from ..serializers.register import RegisterSerializer
 
 
-class RegisterListView(CreateAPIView):
+class RegisterAPIView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = (AllowAny,)
