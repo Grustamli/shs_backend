@@ -98,13 +98,7 @@ class AdDetailSerializer(serializers.ModelSerializer):
     property            = PropertyOnlyFieldsSerializer()
     images              = AdImageListSerializer(many=True)
     owner               = serializers.StringRelatedField()
-    favorited           = serializers.SerializerMethodField()
 
-    def get_favorited(self, obj):
-        request = self.context.get('request', None)
-        if request is not None and not request.user.is_anonymous():
-            return Favourite.objects.filter(owner=request.user, ad=obj).exists()
-        return False
     def to_representation(self, obj):
         request = self.context.get('request', None)
         ret = super().to_representation(obj)
@@ -121,4 +115,4 @@ class AdDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
         fields = ('uuid', 'owner', 'title', 'description', 'category', 'price', 'negotiable',
-            'contact', 'add_on', 'images', 'vehicle', 'property', 'favorited')
+            'contact', 'add_on', 'images', 'vehicle', 'property')
