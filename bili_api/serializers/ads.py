@@ -117,8 +117,6 @@ class AdDetailSerializer(serializers.ModelSerializer):
             ret.pop('property')
         if add_on is None:
             ret.pop('add_on')
-        if request is None or request.user.is_anonymous():
-            ret.pop('favorited')
         return ret
     class Meta:
         model = Ad
