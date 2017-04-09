@@ -7,4 +7,4 @@ class BiliApiConfig(AppConfig):
     name = 'bili_api'
     def ready(self):
         from .signals import (autoCreateProfile, autoGeneratePrivacySetting, \
-        generateThumbnailForAd, convertToLowerCase)
+        generateThumbnailForAd)

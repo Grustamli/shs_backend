@@ -1,4 +1,5 @@
 from django.db.models.signals import (pre_save, post_save)
+from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from .models.user import (Profile, PrivacySetting)
 from .models.search_alert import SearchAlert
@@ -45,4 +46,8 @@ def generateThumbnailForAd(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=SearchAlert, weak=False, dispatch_uid='convert_to_lowercase')
 def convertToLowerCase(sender, instance, *args, **kwargs):
-    instance.search_term = instance.search_term.lower()
+    search_term = instance.search_term
+    if instance.owner.search_alerts.filter(search_term=search_term.lower()).exists():
+        raise ValidationError('search alert already exists')
+    else:
+        instance.search_term = search_term.lower()
