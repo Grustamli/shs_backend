@@ -5,8 +5,3 @@ class SearchAlertListSerializer(ModelSerializer):
     class Meta:
         model = SearchAlert
         exclude = ('id', 'search_term')
-
-class SearchAlertDetailSerializer(ModelSerializer):
-    class Meta:
-        model = SearchAlert
-        fields = ('notify', 'search_term')

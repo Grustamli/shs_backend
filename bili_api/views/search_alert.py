@@ -1,4 +1,4 @@
-from rest_framework. generics import (ListCreateAPIView, RetrieveUpdateDestroyAPIView)
+from rest_framework. generics import (ListCreateAPIView, RetrieveDestroyAPIView)
 from ..models.search_alert import SearchAlert
 from ..serializers.search_alert import *
 
@@ -14,8 +14,8 @@ class SearchAlertListView(ListCreateAPIView):
         user = self.request.user
         serializer.save(owner=user)
 
-class SearchAlertDetailView(RetrieveUpdateDestroyAPIView):
-    serializer_class = SearchAlertDetailSerializer
+class SearchAlertDetailView(RetrieveDestroyAPIView):
+    serializer_class = SearchAlertListSerializer
     queryset = SearchAlert.objects.all()
     def get_object(self):
         pk = self.kwargs['pk']
