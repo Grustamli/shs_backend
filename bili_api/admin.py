@@ -9,6 +9,7 @@ from .models.property_data import PaymentPeriod
 from .models.vehicle_data import *
 from .models.contact import *
 from .models.user import *
+from .models.search_alert import SearchAlert
 
 
 class UserProfileInline(admin.StackedInline):
@@ -39,4 +40,5 @@ admin.site.register([
     VehicleBody,
     VehicleTransmission,
     VehicleFuel,
+    SearchAlert
 ])
