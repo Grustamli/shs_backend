@@ -45,4 +45,4 @@ def generateThumbnailForAd(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=SearchAlert, weak=False, dispatch_uid='convert_to_lowercase')
 def convertToLowerCase(sender, instance, *args, **kwargs):
-    instance.search_term = instance.search_alert.lower()
+    instance.search_term = instance.search_term.lower()
