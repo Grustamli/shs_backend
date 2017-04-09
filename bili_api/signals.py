@@ -1,6 +1,7 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import (pre_save, post_save)
 from django.dispatch import receiver
 from .models.user import (Profile, PrivacySetting)
+from .models.search_alert import SearchAlert
 from django.contrib.auth.models import User
 from .models.ads import (AdImage, Thumbnail)
 from PIL import Image
@@ -41,3 +42,7 @@ def generateThumbnailForAd(sender, instance, created, **kwargs):
             thumbnail_obj.save()
             instance.ad.thumbnail = thumbnail_obj
             print(instance.ad.thumbnail)
+
+@receiver(pre_save, sender=SearchAlert, weak=False, dispatch_uid='convert_to_lowercase')
+def convertToLowerCase(sender, instance, *args, **kwargs):
+    instance.search_alert = instance.search_alert.lower()
