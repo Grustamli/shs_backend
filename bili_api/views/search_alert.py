@@ -5,22 +5,21 @@ from ..serializers.search_alert import *
 class SearchAlertListView(ListCreateAPIView):
     serializer_class = SearchAlertListSerializer
     def get_queryset(self, *args, **kwargs):
-        username = self.kwargs['username']
         queryset = SearchAlert.objects.all()
-        search_alerts = queryset.filter(owner__username=username)
-        return search_alerts
-
+        user = self.request.query_params.get('user')
+        if user is not None:
+            queryset = queryset.filter(owner__username=user)
+        return queryset
     def perform_create(self, serializer):
         user = self.request.user
         serializer.save(owner=user)
 
 class SearchAlertDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = SearchAlertDetailSerializer
+    queryset = SearchAlert.objects.all()
     def get_object(self):
-        username = self.kwargs['username']
-        sa_id = self.kwargs['pk']
-        sa_queryset = SearchAlert.objects.filter(owner__username=username)
+        pk = self.kwargs['pk']
         try:
-            return sa_queryset.get(id=sa_id)
+            return self.get_queryset.get(pk=pk)
         except SearchAlert.DoesNotExist:
             raise NotFound

@@ -16,7 +16,6 @@ def api_root(request, format=None):
         'Add Ons'           :reverse('add_ons', request=request, format=format),
         'Ad Images'         :reverse('ad_images', request=request, format=format),
         'Register'          :reverse('register', request=request, format=format),
-        'Search Alerts'     :reverse('search_alerts', request=request, format=format),
         'Cities'            :reverse('city_list', request=request, format=format),
         'Profiles'          :reverse('profile_list', request=request, format=format)
     })
@@ -41,24 +40,4 @@ def favorites_schema(request, format=None):
     for user in users:
         username            = user.username
         urls[username]      = reverse('user_favorites', kwargs={'username': username}, request=request, format=format)
-    return Response(urls)
-
-# @api_view(['GET'])
-# def ad_images(request, format=None):
-#     ads                     = Ad.objects.all()
-#     urls                    = {}
-#     for ad in ads:
-#         ad_id               = ad.uuid
-#         urls[ad_id]         = reverse('ad_image_list', kwargs={'ad_uuid': ad_id}, request=request, format=format)
-#     return Response(urls)
-
-
-@api_view(['GET'])
-@permission_classes([IsAdminUser,])
-def search_alert_schema(request, format=None):
-    users                   = User.objects.all()
-    urls                    = {}
-    for user in users:
-        username            = user.username
-        urls[username]      = reverse('user_search_alerts', kwargs={'username': username}, request=request, format=format)
     return Response(urls)

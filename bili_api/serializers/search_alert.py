@@ -4,9 +4,9 @@ from ..models.search_alert import SearchAlert
 class SearchAlertListSerializer(ModelSerializer):
     class Meta:
         model = SearchAlert
-        exclude = ('owner',)
+        exclude = ('id', 'search_term')
 
 class SearchAlertDetailSerializer(ModelSerializer):
     class Meta:
         model = SearchAlert
-        fields = ('notify',)
+        fields = ('notify', 'search_term')
