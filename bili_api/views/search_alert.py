@@ -23,6 +23,6 @@ class SearchAlertDetailView(RetrieveDestroyAPIView):
     def get_object(self):
         pk = self.kwargs['pk']
         try:
-            return self.get_queryset.get(pk=pk)
+            return self.get_queryset().get(pk=pk)
         except SearchAlert.DoesNotExist:
             raise NotFound
