@@ -13,7 +13,7 @@ from .views.search_alert            import *
 from .views.verify_username         import VerifyUsername
 from .views.user_posts              import UserPostsListView
 from .views.geolocation             import CityListView
-from .views.profile                 import ProfileListCreateAPIView
+from .views.profile                 import *
 
 urlpatterns = [
     url(r'^$', api_root),
@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^search-alerts/(?P<pk>[0-9]+)$', SearchAlertDetailView.as_view(), name="search_alerts_detail"),
     url(r'^verify-username', VerifyUsername.as_view(), name='verify_username'),
     url(r'^user-posts/(?P<username>[\w-]+)$', UserPostsListView.as_view(), name='user-posts'),
-    url(r'^profiles', ProfileListCreateAPIView.as_view(), name='profile_list')
+    url(r'^profiles$', ProfileListCreateAPIView.as_view(), name='profile_list'),
+    url(r'^profiles/(?P<username>[\w-]+)$', ProfileDetailView.as_view(), name='profile-detail')
 ]
 
 helper_urls = [

@@ -25,7 +25,6 @@ class AdListView(ListCreateAPIView):
         serializer = self.get_serializer_class()(queryset, many=True, context={'request':request})
         return Response(serializer.data)
 
-
     def get_queryset(self):
         queryset = Ad.objects.all()
         username = self.request.query_params.get('user', None)
@@ -49,53 +48,4 @@ class AdDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Ad.objects.all()
     serializer_class = AdDetailSerializer
 
-    def list(self, request):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer_class()(queryset, many=True, context={'request':request})
-        return Response(serializer.data)
 
-# class AdListView(APIView):
-#     def get(self, request, format=None):
-#         queryset = Ad.objects.all()
-#         serializer = AdListSerializer(queryset, many=True)
-#         return Response(serializer.data)
-#
-#
-#     def post(self, request, format=None):
-#         serializer = AdCreateSerializer(data=request.data)
-#         if serializer.is_valid():
-#             user = self.request.user
-#             person = Person.objects.get(id=user.id)
-#             serializer.save(person=person)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#
-#
-# class AdDetailView(APIView):
-#     def get_object(self, uuid):
-#         try:
-#             return Ad.objects.get(pk=uuid)
-#         except Ad.DoesNotExist:
-#             raise Http404
-#
-#     def get(self, request, uuid, format=None):
-#         ad = self.get_object(uuid)
-#         ad = AdDetailSerializer(ad)
-#         return Response(ad.data)
-#
-#
-#     def delete(self, request, uuid, format=None):
-#         ad = self.get_object(uuid)
-#         print(ad)
-#         ad.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
-#
-#     def patch(self, request, uuid, format=None):
-#         serializer = AdCreateSerializer(data=request.data, partial=True)
-#         if serializer.is_valid():
-#             user = self.request.user
-#             person = Person.objects.get(id=user.id)
-#             serializer.save(person=person)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
