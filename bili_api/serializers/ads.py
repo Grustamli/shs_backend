@@ -20,7 +20,7 @@ class AdListSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        brief = self.context['request'].query_params.get('brief')
+        brief = self.context['request'].query_params.get('brief') if self.context else None
         if brief is not None and brief == 'true':
             allowed     = set(['uuid',])
             existing    = set(self.fields.keys())
