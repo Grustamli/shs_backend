@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ..models.user import *
+from .contact import ContactSerializer
 
 class PrivacySettingListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,6 +14,7 @@ class ProfileListSerializer(serializers.ModelSerializer):
     first_name          = serializers.CharField(source='owner.first_name')
     last_name           = serializers.CharField(source='owner.last_name')
     privacy_setting     = PrivacySettingListSerializer()
+    contact             = ContactSerializer(many=True)
     class Meta:
         model           = Profile
         fields          = ('profile_pic','username', 'email', 'first_name', 'last_name',
@@ -29,6 +31,5 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
     phone_number        = serializers.StringRelatedField(read_only=True)
     website             = serializers.StringRelatedField(read_only=True)
 
-    # def create()
     class Meta:
         model           = Profile

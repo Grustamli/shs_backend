@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from .models.user import (Profile, PrivacySetting)
 from .models.search_alert import SearchAlert
+from .models.contact import Contact
 from django.contrib.auth.models import User
 from .models.ads import (AdImage, Thumbnail)
 from PIL import Image
@@ -20,10 +21,15 @@ def autoCreateProfile(sender, instance, created, **kwargs):
 
 # Auto generate privacy setting for profile
 @receiver(post_save, sender=Profile, weak=False, dispatch_uid="create_privacy_settings_item")
-def autoGeneratePrivacySetting(sender, instance, created, **kwargs):
+def autoGeneratePrivacySetting(sender, instance, created, *args, **kwargs):
     if created:
         PrivacySetting.objects.create(profile=instance)
 
+
+@receiver(post_save, sender=Profile, weak=False, dispatch_uid="auto_create_contact_for_profile")
+def autoCreateContactOnNewProfile(sender, instance, created, *args, **kwargs):
+    if created:
+        instance.contact.create()
 
 @receiver(post_save, sender=AdImage, weak=False, dispatch_uid="create_privacy_settings_item")
 def generateThumbnailForAd(sender, instance, created, **kwargs):
