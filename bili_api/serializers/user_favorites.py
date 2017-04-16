@@ -1,8 +1,9 @@
-from rest_framework.serializers import (ModelSerializer, CharField)
-from ..models.ads import Favourite
+from rest_framework import serializers
+from ..models.ads import (Favourite, Ad)
 
 
-class UserFavoriteListSerializer(ModelSerializer):
+class UserFavoriteListSerializer(serializers.ModelSerializer):
+    uuid = serializers.PrimaryKeyRelatedField(queryset=Ad.objects.all(), source='ad')
     class Meta:
         model = Favourite
-        fields = ('ad',)
+        fields = ('uuid',)
