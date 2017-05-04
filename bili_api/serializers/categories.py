@@ -13,7 +13,7 @@ class CategoryListSerializer(serializers.ModelSerializer):
         if lang:
             lang = 'lang_'+lang
             # Drop any fields that are not specified in the `fields` argument.
-            allowed = set(['name', lang, 'has_child'])
+            allowed = set(['name', lang, 'has_child', 'parent'])
             existing = set(self.fields.keys())
             for field_name in existing - allowed:
                 self.fields.pop(field_name)

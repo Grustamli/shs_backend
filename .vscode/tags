@@ -61,6 +61,7 @@ Ad	../bili_api/models/add_on.py	/^from .ads import Ad$/;"	kind:namespace	line:2
 Ad	../bili_api/models/ads.py	/^class Ad(models.Model):$/;"	kind:class	line:27
 Ad	../bili_api/serializers/ads.py	/^from ..models.ads import (Ad, Favourite)$/;"	kind:namespace	line:3
 Ad	../bili_api/serializers/contact.py	/^from ..models.ads import Ad$/;"	kind:namespace	line:3
+Ad	../bili_api/serializers/user_favorites.py	/^from ..models.ads import (Favourite, Ad)$/;"	kind:namespace	line:2
 Ad	../bili_api/views/ad_image.py	/^from ..models.ads import (Ad, AdImage)$/;"	kind:namespace	line:4
 Ad	../bili_api/views/ads.py	/^from ..models.ads import Ad$/;"	kind:namespace	line:14
 Ad	../bili_api/views/api_schema.py	/^from ..models.ads import Ad$/;"	kind:namespace	line:6
@@ -70,7 +71,7 @@ AdCreateSerializer	../bili_api/views/ads.py	/^from ..serializers.ads import (AdL
 AdDetailSerializer	../bili_api/serializers/ads.py	/^class AdDetailSerializer(serializers.ModelSerializer):$/;"	kind:class	line:94
 AdDetailSerializer	../bili_api/views/ads.py	/^from ..serializers.ads import (AdListSerializer, AdCreateSerializer, AdDetailSerializer)$/;"	kind:namespace	line:1
 AdDetailView	../bili_api/urls.py	/^from .views.ads                     import (AdListView, AdDetailView)$/;"	kind:namespace	line:4
-AdDetailView	../bili_api/views/ads.py	/^class AdDetailView(RetrieveUpdateDestroyAPIView):$/;"	kind:class	line:47
+AdDetailView	../bili_api/views/ads.py	/^class AdDetailView(RetrieveUpdateDestroyAPIView):$/;"	kind:class	line:46
 AdFilter	../bili_api/filters.py	/^class AdFilter(FilterSet):$/;"	kind:class	line:7
 AdFilter	../bili_api/views/ads.py	/^from ..filters import AdFilter$/;"	kind:namespace	line:12
 AdImage	../bili_api/admin.py	/^from .models.ads import AdImage, Ad, Favourite$/;"	kind:namespace	line:4
@@ -236,7 +237,6 @@ CategoryListView	../bili_api/views/categories.py	/^class CategoryListView(ListAP
 ChainMap	../help/lib/python3.6/collections/__init__.py	/^class ChainMap(MutableMapping):$/;"	kind:class	line:855
 ChainMap	../venv3.6/lib/python3.6/collections/__init__.py	/^class ChainMap(MutableMapping):$/;"	kind:class	line:855
 CharField	../bili_api/custom_fields/lowercase_char_field.py	/^from django.db.models import (CharField)$/;"	kind:namespace	line:1
-CharField	../bili_api/serializers/user_favorites.py	/^from rest_framework.serializers import (ModelSerializer, CharField)$/;"	kind:namespace	line:1
 City	../bili_api/models/ads.py	/^from .geolocation import City$/;"	kind:namespace	line:10
 City	../bili_api/models/contact.py	/^from .geolocation import City$/;"	kind:namespace	line:4
 City	../bili_api/models/geolocation.py	/^class City(models.Model):$/;"	kind:class	line:3
@@ -652,7 +652,7 @@ FLAGS	../venv3.6/lib/python3.6/sre_parse.py	/^FLAGS = {$/;"	kind:variable	line:5
 Favourite	../bili_api/admin.py	/^from .models.ads import AdImage, Ad, Favourite$/;"	kind:namespace	line:4
 Favourite	../bili_api/models/ads.py	/^class Favourite(models.Model):$/;"	kind:class	line:69
 Favourite	../bili_api/serializers/ads.py	/^from ..models.ads import (Ad, Favourite)$/;"	kind:namespace	line:3
-Favourite	../bili_api/serializers/user_favorites.py	/^from ..models.ads import Favourite$/;"	kind:namespace	line:2
+Favourite	../bili_api/serializers/user_favorites.py	/^from ..models.ads import (Favourite, Ad)$/;"	kind:namespace	line:2
 Favourite	../bili_api/views/user_favorites.py	/^from ..models.ads import Favourite$/;"	kind:namespace	line:6
 FileFinder	../help/lib/python3.6/importlib/_bootstrap_external.py	/^class FileFinder:$/;"	kind:class	line:1187
 FileFinder	../help/lib/python3.6/importlib/machinery.py	/^from ._bootstrap_external import FileFinder$/;"	kind:namespace	line:13
@@ -1348,7 +1348,7 @@ LazyLoader	../venv3.6/lib/python3.6/importlib/util.py	/^class LazyLoader(abc.Loa
 ListAPIView	../bili_api/views/add_on.py	/^from rest_framework.generics import ListAPIView$/;"	kind:namespace	line:1
 ListAPIView	../bili_api/views/categories.py	/^from rest_framework.generics import ListAPIView$/;"	kind:namespace	line:1
 ListAPIView	../bili_api/views/geolocation.py	/^from rest_framework.generics import ListAPIView$/;"	kind:namespace	line:1
-ListAPIView	../bili_api/views/profile.py	/^from rest_framework.generics import (ListAPIView, RetrieveUpdataDestroyAPIView)$/;"	kind:namespace	line:1
+ListAPIView	../bili_api/views/profile.py	/^from rest_framework.generics import (ListAPIView, RetrieveUpdateDestroyAPIView)$/;"	kind:namespace	line:1
 ListAPIView	../bili_api/views/user_posts.py	/^from rest_framework.generics import ListAPIView$/;"	kind:namespace	line:1
 ListAPIView	../bili_api/views/vehicle_data.py	/^from rest_framework.generics import ListAPIView$/;"	kind:namespace	line:1
 ListCreateAPIView	../bili_api/views/ad_image.py	/^from rest_framework.generics import (ListCreateAPIView, RetrieveDestroyAPIView, CreateAPIView)$/;"	kind:namespace	line:1
@@ -1426,12 +1426,11 @@ Meta	../bili_api/serializers/contact.py	/^    class Meta:$/;"	kind:class	line:10
 Meta	../bili_api/serializers/contact.py	/^    class Meta:$/;"	kind:class	line:17
 Meta	../bili_api/serializers/contact.py	/^    class Meta:$/;"	kind:class	line:25
 Meta	../bili_api/serializers/geolocation.py	/^    class Meta:$/;"	kind:class	line:18
-Meta	../bili_api/serializers/profile.py	/^    class Meta:$/;"	kind:class	line:18
-Meta	../bili_api/serializers/profile.py	/^    class Meta:$/;"	kind:class	line:34
-Meta	../bili_api/serializers/profile.py	/^    class Meta:$/;"	kind:class	line:6
+Meta	../bili_api/serializers/profile.py	/^    class Meta:$/;"	kind:class	line:11
+Meta	../bili_api/serializers/profile.py	/^    class Meta:$/;"	kind:class	line:27
 Meta	../bili_api/serializers/register.py	/^    class Meta:$/;"	kind:class	line:13
 Meta	../bili_api/serializers/search_alert.py	/^    class Meta:$/;"	kind:class	line:5
-Meta	../bili_api/serializers/user_favorites.py	/^    class Meta:$/;"	kind:class	line:6
+Meta	../bili_api/serializers/user_favorites.py	/^    class Meta:$/;"	kind:class	line:7
 Meta	../bili_api/serializers/vehicle_data.py	/^    class Meta:$/;"	kind:class	line:20
 Meta	../bili_api/serializers/vehicle_data.py	/^    class Meta:$/;"	kind:class	line:39
 Meta	../bili_api/serializers/vehicle_data.py	/^    class Meta:$/;"	kind:class	line:58
@@ -1453,7 +1452,6 @@ ModelSerializer	../bili_api/serializers/add_on.py	/^from rest_framework.serializ
 ModelSerializer	../bili_api/serializers/geolocation.py	/^from rest_framework.serializers import ModelSerializer$/;"	kind:namespace	line:1
 ModelSerializer	../bili_api/serializers/register.py	/^from rest_framework.serializers import ModelSerializer$/;"	kind:namespace	line:1
 ModelSerializer	../bili_api/serializers/search_alert.py	/^from rest_framework.serializers import ModelSerializer$/;"	kind:namespace	line:1
-ModelSerializer	../bili_api/serializers/user_favorites.py	/^from rest_framework.serializers import (ModelSerializer, CharField)$/;"	kind:namespace	line:1
 ModelSerializer	../bili_api/serializers/vehicle_data.py	/^from rest_framework.serializers import ModelSerializer$/;"	kind:namespace	line:1
 ModifyingFieldDescriptor	../bili_api/custom_fields/lowercase_char_field.py	/^class ModifyingFieldDescriptor(object):$/;"	kind:class	line:3
 ModuleSpec	../help/lib/python3.6/importlib/_bootstrap.py	/^class ModuleSpec:$/;"	kind:class	line:318
@@ -1584,17 +1582,16 @@ Pointfloat	../help/lib/python3.6/tokenize.py	/^Pointfloat = group(r'[0-9](?:_?[0
 Pointfloat	../venv3.6/lib/python3.6/tokenize.py	/^Pointfloat = group(r'[0-9](?:_?[0-9])*\\.(?:[0-9](?:_?[0-9])*)?',$/;"	kind:variable	line:129
 PrivacySetting	../bili_api/models/user.py	/^class PrivacySetting(models.Model):$/;"	kind:class	line:23
 PrivacySetting	../bili_api/signals.py	/^from .models.user import (Profile, PrivacySetting)$/;"	kind:namespace	line:4
-PrivacySettingListSerializer	../bili_api/serializers/profile.py	/^class PrivacySettingListSerializer(serializers.ModelSerializer):$/;"	kind:class	line:5
 Profile	../bili_api/models/user.py	/^class Profile(models.Model):$/;"	kind:class	line:9
 Profile	../bili_api/serializers/contact.py	/^from ..models.user import Profile$/;"	kind:namespace	line:4
 Profile	../bili_api/signals.py	/^from .models.user import (Profile, PrivacySetting)$/;"	kind:namespace	line:4
 Profile	../bili_api/views/profile.py	/^from ..models.user import Profile$/;"	kind:namespace	line:3
-ProfileDetailView	../bili_api/views/profile.py	/^class ProfileDetailView(RetrieveUpdataDestroyAPIView):$/;"	kind:class	line:9
-ProfileListCreateAPIView	../bili_api/views/profile.py	/^class ProfileListCreateAPIView(ListAPIView):$/;"	kind:class	line:5
-ProfileListSerializer	../bili_api/serializers/profile.py	/^class ProfileListSerializer(serializers.ModelSerializer):$/;"	kind:class	line:11
+ProfileDetailView	../bili_api/views/profile.py	/^class ProfileDetailView(RetrieveUpdateDestroyAPIView):$/;"	kind:class	line:10
+ProfileListCreateAPIView	../bili_api/views/profile.py	/^class ProfileListCreateAPIView(ListAPIView):$/;"	kind:class	line:6
+ProfileListSerializer	../bili_api/serializers/profile.py	/^class ProfileListSerializer(serializers.ModelSerializer):$/;"	kind:class	line:5
 ProfileListSerializer	../bili_api/views/profile.py	/^from ..serializers.profile import (ProfileListSerializer)$/;"	kind:namespace	line:2
 ProfileSerializer	../bili_api/testing.py	/^from serializers import ProfileSerializer$/;"	kind:namespace	line:1
-ProfileUpdateSerializer	../bili_api/serializers/profile.py	/^class ProfileUpdateSerializer(serializers.ModelSerializer):$/;"	kind:class	line:25
+ProfileUpdateSerializer	../bili_api/serializers/profile.py	/^class ProfileUpdateSerializer(serializers.ModelSerializer):$/;"	kind:class	line:18
 Property	../bili_api/admin.py	/^from .models.ad_extensions import Property$/;"	kind:namespace	line:5
 Property	../bili_api/models/ad_extensions.py	/^class Property(Ad):$/;"	kind:class	line:13
 Property	../bili_api/serializers/ad_extensions.py	/^from ..models.ad_extensions import (Vehicle, Property)$/;"	kind:namespace	line:2
@@ -1680,8 +1677,8 @@ Response	../bili_api/views/verify_username.py	/^from rest_framework.response imp
 RetrieveDestroyAPIView	../bili_api/views/ad_image.py	/^from rest_framework.generics import (ListCreateAPIView, RetrieveDestroyAPIView, CreateAPIView)$/;"	kind:namespace	line:1
 RetrieveDestroyAPIView	../bili_api/views/search_alert.py	/^from rest_framework. generics import (ListCreateAPIView, RetrieveDestroyAPIView)$/;"	kind:namespace	line:1
 RetrieveDestroyAPIView	../bili_api/views/user_favorites.py	/^from rest_framework.generics import (ListCreateAPIView, RetrieveDestroyAPIView)$/;"	kind:namespace	line:1
-RetrieveUpdataDestroyAPIView	../bili_api/views/profile.py	/^from rest_framework.generics import (ListAPIView, RetrieveUpdataDestroyAPIView)$/;"	kind:namespace	line:1
 RetrieveUpdateDestroyAPIView	../bili_api/views/ads.py	/^from rest_framework.generics import (ListCreateAPIView, RetrieveUpdateDestroyAPIView)$/;"	kind:namespace	line:2
+RetrieveUpdateDestroyAPIView	../bili_api/views/profile.py	/^from rest_framework.generics import (ListAPIView, RetrieveUpdateDestroyAPIView)$/;"	kind:namespace	line:1
 Reversible	../help/lib/python3.6/_collections_abc.py	/^class Reversible(Iterable):$/;"	kind:class	line:293
 Reversible	../venv3.6/lib/python3.6/_collections_abc.py	/^class Reversible(Iterable):$/;"	kind:class	line:293
 S	../help/lib/python3.6/re.py	/^    S = DOTALL$/;"	kind:variable	line:155
@@ -2540,7 +2537,7 @@ UserDict	../help/lib/python3.6/collections/__init__.py	/^class UserDict(MutableM
 UserDict	../venv3.6/lib/python3.6/collections/__init__.py	/^class UserDict(MutableMapping):$/;"	kind:class	line:963
 UserFavoriteDetailView	../bili_api/urls.py	/^from .views.user_favorites          import (UserFavoriteListView, UserFavoriteDetailView)$/;"	kind:namespace	line:8
 UserFavoriteDetailView	../bili_api/views/user_favorites.py	/^class UserFavoriteDetailView(RetrieveDestroyAPIView):$/;"	kind:class	line:28
-UserFavoriteListSerializer	../bili_api/serializers/user_favorites.py	/^class UserFavoriteListSerializer(ModelSerializer):$/;"	kind:class	line:5
+UserFavoriteListSerializer	../bili_api/serializers/user_favorites.py	/^class UserFavoriteListSerializer(serializers.ModelSerializer):$/;"	kind:class	line:5
 UserFavoriteListSerializer	../bili_api/views/user_favorites.py	/^from ..serializers.user_favorites import UserFavoriteListSerializer$/;"	kind:namespace	line:8
 UserFavoriteListView	../bili_api/urls.py	/^from .views.user_favorites          import (UserFavoriteListView, UserFavoriteDetailView)$/;"	kind:namespace	line:8
 UserFavoriteListView	../bili_api/views/user_favorites.py	/^class UserFavoriteListView(ListCreateAPIView):$/;"	kind:class	line:10
@@ -5565,7 +5562,7 @@ circular	../venv3.6/lib/python3.6/shutil.py	/^    import zipfile  # late import 
 circular	../venv3.6/lib/python3.6/shutil.py	/^    import zipfile  # late import for breaking circular dependency$/;"	kind:namespace	line:874
 circular	../venv3.6/lib/python3.6/weakref.py	/^import collections  # Import after _weakref to avoid circular import.$/;"	kind:namespace	line:24
 city	../bili_api/models/contact.py	/^    city            = models.ForeignKey(City, on_delete=models.PROTECT, related_name='addresses')$/;"	kind:variable	line:7
-city	../bili_api/serializers/profile.py	/^    city                = serializers.CharField(source='address.city')$/;"	kind:variable	line:30
+city	../bili_api/serializers/profile.py	/^    city                = serializers.CharField(source='address.city')$/;"	kind:variable	line:23
 cleanup	../help/lib/python3.6/tempfile.py	/^    def cleanup(self):$/;"	kind:member	line:809
 cleanup	../venv3.6/lib/python3.6/tempfile.py	/^    def cleanup(self):$/;"	kind:member	line:809
 clear	../help/lib/python3.6/_collections_abc.py	/^    def clear(self):$/;"	kind:member	line:596
@@ -6156,7 +6153,7 @@ contact	../bili_api/serializers/ad_extensions.py	/^    contact        = AddressO
 contact	../bili_api/serializers/ads.py	/^    contact                 = ContactSerializer(many=True, write_only=True)$/;"	kind:variable	line:51
 contact	../bili_api/serializers/ads.py	/^    contact             = AddressOnlyContactSerializer(many=True)$/;"	kind:variable	line:16
 contact	../bili_api/serializers/ads.py	/^    contact             = ContactSerializer(many=True)$/;"	kind:variable	line:95
-contact	../bili_api/serializers/profile.py	/^    contact             = ContactSerializer(many=True)$/;"	kind:variable	line:17
+contact	../bili_api/serializers/profile.py	/^    contact             = ContactSerializer(many=True)$/;"	kind:variable	line:10
 contact.py	../bili_api/models/contact.py	1;"	kind:file	line:1
 contact.py	../bili_api/serializers/contact.py	1;"	kind:file	line:1
 contains	../help/lib/python3.6/operator.py	/^def contains(a, b):$/;"	kind:function	line:153
@@ -7217,8 +7214,8 @@ dump	../venv3.6/lib/python3.6/sre_constants.py	/^    def dump(f, d, prefix):$/;"
 dump	../venv3.6/lib/python3.6/sre_parse.py	/^    def dump(self, level=0):$/;"	kind:member	line:117
 elements	../help/lib/python3.6/collections/__init__.py	/^    def elements(self):$/;"	kind:member	line:557
 elements	../venv3.6/lib/python3.6/collections/__init__.py	/^    def elements(self):$/;"	kind:member	line:557
-email	../bili_api/serializers/profile.py	/^    email               = serializers.CharField(source='owner.email')$/;"	kind:variable	line:13
-email	../bili_api/serializers/profile.py	/^    email               = serializers.CharField(source='owner.email')$/;"	kind:variable	line:27
+email	../bili_api/serializers/profile.py	/^    email               = serializers.CharField(source='owner.email')$/;"	kind:variable	line:20
+email	../bili_api/serializers/profile.py	/^    email               = serializers.CharField(source='owner.email')$/;"	kind:variable	line:7
 email_visible	../bili_api/models/user.py	/^    email_visible   = models.BooleanField(default=False)$/;"	kind:variable	line:26
 encode	../help/lib/python3.6/base64.py	/^def encode(input, output):$/;"	kind:function	line:491
 encode	../help/lib/python3.6/codecs.py	/^    def encode(self, input, errors='strict'):$/;"	kind:member	line:137
@@ -8062,10 +8059,9 @@ fields	../bili_api/serializers/categories.py	/^        fields = '__all__'$/;"	ki
 fields	../bili_api/serializers/contact.py	/^        fields      = ('address',)$/;"	kind:variable	line:19
 fields	../bili_api/serializers/contact.py	/^        fields = ('address','phone_number', 'website')$/;"	kind:variable	line:27
 fields	../bili_api/serializers/geolocation.py	/^        fields = '__all__'$/;"	kind:variable	line:20
-fields	../bili_api/serializers/profile.py	/^        fields          = ('phone_visible', 'email_visible', 'address_visible')$/;"	kind:variable	line:8
-fields	../bili_api/serializers/profile.py	/^        fields          = ('profile_pic','username', 'email', 'first_name', 'last_name',$/;"	kind:variable	line:20
+fields	../bili_api/serializers/profile.py	/^        fields          = ('profile_pic','username', 'email', 'first_name', 'last_name',$/;"	kind:variable	line:13
 fields	../bili_api/serializers/register.py	/^        fields = ('username', 'email', 'password')$/;"	kind:variable	line:15
-fields	../bili_api/serializers/user_favorites.py	/^        fields = ('ad',)$/;"	kind:variable	line:8
+fields	../bili_api/serializers/user_favorites.py	/^        fields = ('uuid',)$/;"	kind:variable	line:9
 fields	../bili_api/serializers/vehicle_data.py	/^        fields = '__all__'$/;"	kind:variable	line:22
 fields	../bili_api/serializers/vehicle_data.py	/^        fields = '__all__'$/;"	kind:variable	line:41
 fields	../bili_api/serializers/vehicle_data.py	/^        fields = '__all__'$/;"	kind:variable	line:60
@@ -8151,8 +8147,8 @@ findall	../help/lib/python3.6/re.py	/^def findall(pattern, string, flags=0):$/;"
 findall	../venv3.6/lib/python3.6/re.py	/^def findall(pattern, string, flags=0):$/;"	kind:function	line:214
 finditer	../help/lib/python3.6/re.py	/^def finditer(pattern, string, flags=0):$/;"	kind:function	line:224
 finditer	../venv3.6/lib/python3.6/re.py	/^def finditer(pattern, string, flags=0):$/;"	kind:function	line:224
-first_name	../bili_api/serializers/profile.py	/^    first_name          = serializers.CharField(source='owner.first_name')$/;"	kind:variable	line:14
-first_name	../bili_api/serializers/profile.py	/^    first_name          = serializers.CharField(source='owner.first_name')$/;"	kind:variable	line:28
+first_name	../bili_api/serializers/profile.py	/^    first_name          = serializers.CharField(source='owner.first_name')$/;"	kind:variable	line:21
+first_name	../bili_api/serializers/profile.py	/^    first_name          = serializers.CharField(source='owner.first_name')$/;"	kind:variable	line:8
 fix_flags	../help/lib/python3.6/sre_parse.py	/^def fix_flags(src, flags):$/;"	kind:function	line:829
 fix_flags	../venv3.6/lib/python3.6/sre_parse.py	/^def fix_flags(src, flags):$/;"	kind:function	line:829
 fixclasspath	../help/lib/python3.6/site.py	/^def fixclasspath():$/;"	kind:function	line:646
@@ -8359,14 +8355,15 @@ get_magic	../help/lib/python3.6/imp.py	/^def get_magic():$/;"	kind:function	line
 get_magic	../venv3.6/lib/python3.6/imp.py	/^def get_magic():$/;"	kind:function	line:59
 get_object	../bili_api/views/search_alert.py	/^    def get_object(self):$/;"	kind:member	line:23
 get_object	../bili_api/views/user_favorites.py	/^    def get_object(self):$/;"	kind:member	line:31
+get_object_or_404	../bili_api/views/profile.py	/^from django.shortcuts import get_object_or_404$/;"	kind:namespace	line:4
 get_platform	../help/lib/python3.6/site.py	/^    from distutils.util import get_platform$/;"	kind:namespace	line:136
 get_platform	../venv3.6/lib/python3.6/site.py	/^    from distutils.util import get_platform$/;"	kind:namespace	line:136
-get_queryset	../bili_api/views/ads.py	/^    def get_queryset(self):$/;"	kind:member	line:29
+get_queryset	../bili_api/views/ads.py	/^    def get_queryset(self):$/;"	kind:member	line:28
 get_queryset	../bili_api/views/categories.py	/^    def get_queryset(self):$/;"	kind:member	line:8
 get_queryset	../bili_api/views/search_alert.py	/^    def get_queryset(self, *args, **kwargs):$/;"	kind:member	line:7
 get_queryset	../bili_api/views/user_posts.py	/^    def get_queryset(self):$/;"	kind:member	line:9
 get_queryset	../bili_api/views/vehicle_data.py	/^    def get_queryset(self):$/;"	kind:member	line:45
-get_serializer_class	../bili_api/views/ads.py	/^    def get_serializer_class(self):$/;"	kind:member	line:36
+get_serializer_class	../bili_api/views/ads.py	/^    def get_serializer_class(self):$/;"	kind:member	line:35
 get_serializer_class	../bili_api/views/vehicle_data.py	/^    def get_serializer_class(self):$/;"	kind:member	line:31
 get_source	../help/lib/python3.6/importlib/_bootstrap.py	/^    def get_source(cls, fullname):$/;"	kind:member	line:740
 get_source	../help/lib/python3.6/importlib/_bootstrap.py	/^    def get_source(cls, fullname):$/;"	kind:member	line:817
@@ -9210,8 +9207,8 @@ lang_tr	../bili_api/models/vehicle_data.py	/^    lang_tr     = models.CharField(
 lang_tr	../bili_api/models/vehicle_data.py	/^    lang_tr     = models.CharField(max_length=50, null = True, blank = True)$/;"	kind:variable	line:23
 lang_tr	../bili_api/models/vehicle_data.py	/^    lang_tr     = models.CharField(max_length=50, null = True, blank = True)$/;"	kind:variable	line:32
 lang_tr	../bili_api/models/vehicle_data.py	/^    lang_tr     = models.CharField(max_length=50, null = True, blank = True)$/;"	kind:variable	line:41
-last_name	../bili_api/serializers/profile.py	/^    last_name           = serializers.CharField(source='owner.last_name')$/;"	kind:variable	line:15
-last_name	../bili_api/serializers/profile.py	/^    last_name           = serializers.CharField(source='owner.last_name')$/;"	kind:variable	line:29
+last_name	../bili_api/serializers/profile.py	/^    last_name           = serializers.CharField(source='owner.last_name')$/;"	kind:variable	line:22
+last_name	../bili_api/serializers/profile.py	/^    last_name           = serializers.CharField(source='owner.last_name')$/;"	kind:variable	line:9
 late	../help/lib/python3.6/shutil.py	/^    import tarfile  # late import for breaking circular dependency$/;"	kind:namespace	line:623
 late	../help/lib/python3.6/shutil.py	/^    import tarfile  # late import for breaking circular dependency$/;"	kind:namespace	line:908
 late	../help/lib/python3.6/shutil.py	/^    import zipfile  # late import for breaking circular dependency$/;"	kind:namespace	line:666
@@ -9246,7 +9243,6 @@ linesep	../venv3.6/lib/python3.6/os.py	/^    linesep = '\\r\\n'$/;"	kind:variabl
 linkpath	../help/lib/python3.6/tarfile.py	/^    linkpath = property(_getlinkpath, _setlinkpath)$/;"	kind:variable	line:774
 linkpath	../venv3.6/lib/python3.6/tarfile.py	/^    linkpath = property(_getlinkpath, _setlinkpath)$/;"	kind:variable	line:774
 list	../bili_api/views/ads.py	/^    def list(self, request):$/;"	kind:member	line:23
-list	../bili_api/views/ads.py	/^    def list(self, request):$/;"	kind:member	line:52
 list	../bili_api/views/user_favorites.py	/^    def list(self, request, username):$/;"	kind:member	line:14
 list	../help/lib/python3.6/tarfile.py	/^    def list(self, verbose=True, *, members=None):$/;"	kind:member	line:1868
 list	../venv3.6/lib/python3.6/tarfile.py	/^    def list(self, verbose=True, *, members=None):$/;"	kind:member	line:1868
@@ -9327,6 +9323,8 @@ lookup	../help/lib/python3.6/tokenize.py	/^from codecs import lookup, BOM_UTF8$/
 lookup	../venv3.6/lib/python3.6/shutil.py	/^        def lookup(name):$/;"	kind:function	line:187
 lookup	../venv3.6/lib/python3.6/shutil.py	/^        def lookup(name):$/;"	kind:function	line:192
 lookup	../venv3.6/lib/python3.6/tokenize.py	/^from codecs import lookup, BOM_UTF8$/;"	kind:namespace	line:28
+lookup_field	../bili_api/views/profile.py	/^    lookup_field        = 'owner__username'$/;"	kind:variable	line:13
+lookup_url_kwarg	../bili_api/views/profile.py	/^    lookup_url_kwarg   = 'username'$/;"	kind:variable	line:14
 lower	../help/lib/python3.6/collections/__init__.py	/^    def lower(self): return self.__class__(self.data.lower())$/;"	kind:member	line:1210
 lower	../venv3.6/lib/python3.6/collections/__init__.py	/^    def lower(self): return self.__class__(self.data.lower())$/;"	kind:member	line:1210
 lowercase_char_field	../bili_api/migrations/0006_auto_20170409_2330.py	/^import bili_api.custom_fields.lowercase_char_field$/;"	kind:namespace	line:5
@@ -9522,12 +9520,11 @@ model	../bili_api/serializers/contact.py	/^        model       = Address$/;"	kin
 model	../bili_api/serializers/contact.py	/^        model       = Contact$/;"	kind:variable	line:18
 model	../bili_api/serializers/contact.py	/^        model = Contact$/;"	kind:variable	line:26
 model	../bili_api/serializers/geolocation.py	/^        model = City$/;"	kind:variable	line:19
-model	../bili_api/serializers/profile.py	/^        model           = PrivacySetting$/;"	kind:variable	line:7
-model	../bili_api/serializers/profile.py	/^        model           = Profile$/;"	kind:variable	line:19
-model	../bili_api/serializers/profile.py	/^        model           = Profile$/;"	kind:variable	line:35
+model	../bili_api/serializers/profile.py	/^        model           = Profile$/;"	kind:variable	line:12
+model	../bili_api/serializers/profile.py	/^        model           = Profile$/;"	kind:variable	line:28
 model	../bili_api/serializers/register.py	/^        model = User$/;"	kind:variable	line:14
 model	../bili_api/serializers/search_alert.py	/^        model = SearchAlert$/;"	kind:variable	line:6
-model	../bili_api/serializers/user_favorites.py	/^        model = Favourite$/;"	kind:variable	line:7
+model	../bili_api/serializers/user_favorites.py	/^        model = Favourite$/;"	kind:variable	line:8
 model	../bili_api/serializers/vehicle_data.py	/^        model = VehicleBody$/;"	kind:variable	line:21
 model	../bili_api/serializers/vehicle_data.py	/^        model = VehicleFuel$/;"	kind:variable	line:40
 model	../bili_api/serializers/vehicle_data.py	/^        model = VehicleMake$/;"	kind:variable	line:78
@@ -9935,11 +9932,11 @@ pbkdf2_hmac	../venv3.6/lib/python3.6/hashlib.py	/^    def pbkdf2_hmac(hash_name,
 pbkdf2_hmac	../venv3.6/lib/python3.6/hashlib.py	/^    from _hashlib import pbkdf2_hmac$/;"	kind:namespace	line:170
 peek	../help/lib/python3.6/weakref.py	/^    def peek(self):$/;"	kind:member	line:558
 peek	../venv3.6/lib/python3.6/weakref.py	/^    def peek(self):$/;"	kind:member	line:558
-perform_create	../bili_api/views/ads.py	/^    def perform_create(self, serializer):$/;"	kind:member	line:42
+perform_create	../bili_api/views/ads.py	/^    def perform_create(self, serializer):$/;"	kind:member	line:41
 perform_create	../bili_api/views/search_alert.py	/^    def perform_create(self, serializer):$/;"	kind:member	line:16
 perform_create	../bili_api/views/user_favorites.py	/^    def perform_create(self, serializer):$/;"	kind:member	line:23
 permission_classes	../bili_api/views/ad_image.py	/^    permission_classes = (IsOwnAdImageOrReadOnly,)$/;"	kind:variable	line:24
-permission_classes	../bili_api/views/ads.py	/^    permission_classes = (IsOwnerOrReadOnly,)$/;"	kind:variable	line:48
+permission_classes	../bili_api/views/ads.py	/^    permission_classes = (IsOwnerOrReadOnly,)$/;"	kind:variable	line:47
 permission_classes	../bili_api/views/api_schema.py	/^from rest_framework.decorators import (api_view, permission_classes)$/;"	kind:namespace	line:1
 permission_classes	../bili_api/views/register.py	/^    permission_classes = (AllowAny,)$/;"	kind:variable	line:14
 permission_classes	../bili_api/views/verify_username.py	/^    permission_classes = (AllowAny,)$/;"	kind:variable	line:9
@@ -9950,7 +9947,7 @@ perror	../venv3.6/lib/python3.6/tokenize.py	/^    def perror(message):$/;"	kind:
 pformat	../venv3.6/bin/jp.py	/^from pprint import pformat$/;"	kind:namespace	line:6
 phone_number	../bili_api/models/contact.py	/^    phone_number    = models.OneToOneField(PhoneNumber, on_delete=models.CASCADE, null=True, blank=True)$/;"	kind:variable	line:24
 phone_number	../bili_api/serializers/contact.py	/^    phone_number    = serializers.CharField(source='phone_number.number', required=False)$/;"	kind:variable	line:23
-phone_number	../bili_api/serializers/profile.py	/^    phone_number        = serializers.StringRelatedField(read_only=True)$/;"	kind:variable	line:31
+phone_number	../bili_api/serializers/profile.py	/^    phone_number        = serializers.StringRelatedField(read_only=True)$/;"	kind:variable	line:24
 phone_visible	../bili_api/models/user.py	/^    phone_visible   = models.BooleanField(default=False)$/;"	kind:variable	line:25
 pickle	../help/lib/python3.6/copyreg.py	/^def pickle(ob_type, pickle_function, constructor_ob=None):$/;"	kind:function	line:12
 pickle	../venv3.6/lib/python3.6/copyreg.py	/^def pickle(ob_type, pickle_function, constructor_ob=None):$/;"	kind:function	line:12
@@ -10033,7 +10030,6 @@ print_function	../venv3.6/lib/python3.6/__future__.py	/^print_function = _Featur
 printerArgs	../venv3.6/bin/pilprint.py	/^        printerArgs = ["lpr", "-P%s" % a]$/;"	kind:variable	line:68
 printerArgs	../venv3.6/bin/pilprint.py	/^        printerArgs = ["lpr"]$/;"	kind:variable	line:65
 printerArgs	../venv3.6/bin/pilprint.py	/^printerArgs = []  # print to stdout$/;"	kind:variable	line:51
-privacy_setting	../bili_api/serializers/profile.py	/^    privacy_setting     = PrivacySettingListSerializer()$/;"	kind:variable	line:16
 production.py	../bili/settings/production.py	1;"	kind:file	line:1
 profile	../bili_api/models/user.py	/^    profile         = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='privacy_setting')$/;"	kind:variable	line:24
 profile.py	../bili_api/serializers/profile.py	1;"	kind:file	line:1
@@ -10086,10 +10082,10 @@ pyver	../venv3.6/lib/python3.6/config-3.6m-darwin/python-config.py	/^pyver = sys
 queryset	../bili_api/views/ad_image.py	/^    queryset = AdImage.objects.all()$/;"	kind:variable	line:21
 queryset	../bili_api/views/ad_image.py	/^    queryset = AdImage.objects.all()$/;"	kind:variable	line:26
 queryset	../bili_api/views/add_on.py	/^    queryset = AddOnType.objects.all()$/;"	kind:variable	line:6
-queryset	../bili_api/views/ads.py	/^    queryset = Ad.objects.all()$/;"	kind:variable	line:49
+queryset	../bili_api/views/ads.py	/^    queryset = Ad.objects.all()$/;"	kind:variable	line:48
 queryset	../bili_api/views/geolocation.py	/^    queryset=City.objects.all()$/;"	kind:variable	line:7
-queryset	../bili_api/views/profile.py	/^    queryset            = Profile.objects.all()$/;"	kind:variable	line:10
-queryset	../bili_api/views/profile.py	/^    queryset            = Profile.objects.all()$/;"	kind:variable	line:6
+queryset	../bili_api/views/profile.py	/^    queryset            = Profile.objects.all()$/;"	kind:variable	line:11
+queryset	../bili_api/views/profile.py	/^    queryset            = Profile.objects.all()$/;"	kind:variable	line:7
 queryset	../bili_api/views/register.py	/^    queryset = User.objects.all()$/;"	kind:variable	line:12
 queryset	../bili_api/views/search_alert.py	/^    queryset = SearchAlert.objects.all()$/;"	kind:variable	line:22
 queryset	../bili_api/views/user_favorites.py	/^    queryset = Favourite.objects.all()$/;"	kind:variable	line:12
@@ -10494,11 +10490,11 @@ sep	../venv3.6/lib/python3.6/posixpath.py	/^sep = '\/'$/;"	kind:variable	line:33
 serializer_class	../bili_api/views/ad_image.py	/^    serializer_class = AdImageListSerializer$/;"	kind:variable	line:20
 serializer_class	../bili_api/views/ad_image.py	/^    serializer_class = AdImageListSerializer$/;"	kind:variable	line:25
 serializer_class	../bili_api/views/add_on.py	/^    serializer_class = AddOnListSerializer$/;"	kind:variable	line:7
-serializer_class	../bili_api/views/ads.py	/^    serializer_class = AdDetailSerializer$/;"	kind:variable	line:50
+serializer_class	../bili_api/views/ads.py	/^    serializer_class = AdDetailSerializer$/;"	kind:variable	line:49
 serializer_class	../bili_api/views/categories.py	/^    serializer_class = CategoryListSerializer$/;"	kind:variable	line:7
 serializer_class	../bili_api/views/geolocation.py	/^    serializer_class=CityListSerializer$/;"	kind:variable	line:6
-serializer_class	../bili_api/views/profile.py	/^    serializer_class    = ProfileListSerializer$/;"	kind:variable	line:11
-serializer_class	../bili_api/views/profile.py	/^    serializer_class    = ProfileListSerializer$/;"	kind:variable	line:7
+serializer_class	../bili_api/views/profile.py	/^    serializer_class    = ProfileListSerializer$/;"	kind:variable	line:12
+serializer_class	../bili_api/views/profile.py	/^    serializer_class    = ProfileListSerializer$/;"	kind:variable	line:8
 serializer_class	../bili_api/views/register.py	/^    serializer_class = RegisterSerializer$/;"	kind:variable	line:13
 serializer_class	../bili_api/views/search_alert.py	/^    serializer_class = SearchAlertListSerializer$/;"	kind:variable	line:21
 serializer_class	../bili_api/views/search_alert.py	/^    serializer_class = SearchAlertListSerializer$/;"	kind:variable	line:6
@@ -10510,6 +10506,7 @@ serializers	../bili_api/serializers/ads.py	/^from rest_framework import serializ
 serializers	../bili_api/serializers/categories.py	/^from rest_framework import serializers$/;"	kind:namespace	line:1
 serializers	../bili_api/serializers/contact.py	/^from rest_framework import serializers$/;"	kind:namespace	line:1
 serializers	../bili_api/serializers/profile.py	/^from rest_framework import serializers$/;"	kind:namespace	line:1
+serializers	../bili_api/serializers/user_favorites.py	/^from rest_framework import serializers$/;"	kind:namespace	line:1
 set	../help/lib/python3.6/site.py	/^    from sets import Set as set$/;"	kind:namespace	line:75
 set	../venv3.6/lib/python3.6/site.py	/^    from sets import Set as set$/;"	kind:namespace	line:75
 setBEGINLIBPATH	../help/lib/python3.6/site.py	/^def setBEGINLIBPATH():$/;"	kind:function	line:362
@@ -11117,8 +11114,8 @@ user_favorites.py	../bili_api/views/user_favorites.py	1;"	kind:file	line:1
 user_posts.py	../bili_api/views/user_posts.py	1;"	kind:file	line:1
 usercustomize	../help/lib/python3.6/site.py	/^        import usercustomize$/;"	kind:namespace	line:663
 usercustomize	../venv3.6/lib/python3.6/site.py	/^        import usercustomize$/;"	kind:namespace	line:663
-username	../bili_api/serializers/profile.py	/^    username            = serializers.CharField(source='owner.username')$/;"	kind:variable	line:12
-username	../bili_api/serializers/profile.py	/^    username            = serializers.CharField(source='owner.username')$/;"	kind:variable	line:26
+username	../bili_api/serializers/profile.py	/^    username            = serializers.CharField(source='owner.username')$/;"	kind:variable	line:19
+username	../bili_api/serializers/profile.py	/^    username            = serializers.CharField(source='owner.username')$/;"	kind:variable	line:6
 utf_16.py	../help/lib/python3.6/encodings/utf_16.py	1;"	kind:file	line:1
 utf_16.py	../venv3.6/lib/python3.6/encodings/utf_16.py	1;"	kind:file	line:1
 utf_16_be.py	../help/lib/python3.6/encodings/utf_16_be.py	1;"	kind:file	line:1
@@ -11149,6 +11146,7 @@ uu_encode	../help/lib/python3.6/encodings/uu_codec.py	/^def uu_encode(input, err
 uu_encode	../venv3.6/lib/python3.6/encodings/uu_codec.py	/^def uu_encode(input, errors='strict', filename='<data>', mode=0o666):$/;"	kind:function	line:16
 uuid	../bili_api/models/ads.py	/^    uuid            = models.CharField(primary_key=True, editable=False, max_length=100)$/;"	kind:variable	line:28
 uuid	../bili_api/models/ads.py	/^    uuid            = models.CharField(primary_key=True, editable=False, max_length=100)$/;"	kind:variable	line:48
+uuid	../bili_api/serializers/user_favorites.py	/^    uuid = serializers.PrimaryKeyRelatedField(queryset=Ad.objects.all(), source='ad')$/;"	kind:variable	line:6
 uuid4	../bili_api/models/ads.py	/^from uuid import uuid4$/;"	kind:namespace	line:15
 uuid4	../test.py	/^from uuid import uuid4$/;"	kind:namespace	line:1
 valid_opts	../help/lib/python3.6/config-3.6m-darwin/python-config.py	/^valid_opts = ['prefix', 'exec-prefix', 'includes', 'libs', 'cflags',$/;"	kind:variable	line:11
@@ -11236,7 +11234,7 @@ weakref.py	../venv3.6/lib/python3.6/weakref.py	1;"	kind:file	line:1
 webdriver	../functional_tests/test_all_users.py	/^from selenium import webdriver$/;"	kind:namespace	line:1
 website	../bili_api/models/contact.py	/^    website         = models.OneToOneField(Website, on_delete=models.CASCADE, null=True, blank=True)$/;"	kind:variable	line:25
 website	../bili_api/serializers/contact.py	/^    website         = serializers.CharField(source='website.url', required=False)$/;"	kind:variable	line:24
-website	../bili_api/serializers/profile.py	/^    website             = serializers.StringRelatedField(read_only=True)$/;"	kind:variable	line:32
+website	../bili_api/serializers/profile.py	/^    website             = serializers.StringRelatedField(read_only=True)$/;"	kind:variable	line:25
 weibullvariate	../help/lib/python3.6/random.py	/^    def weibullvariate(self, alpha, beta):$/;"	kind:member	line:650
 weibullvariate	../help/lib/python3.6/random.py	/^weibullvariate = _inst.weibullvariate$/;"	kind:variable	line:761
 weibullvariate	../venv3.6/lib/python3.6/random.py	/^    def weibullvariate(self, alpha, beta):$/;"	kind:member	line:650
